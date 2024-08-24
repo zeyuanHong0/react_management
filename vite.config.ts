@@ -9,7 +9,16 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     resolve: {
       alias: {
-        "@": path.resolve("./src"), // 相对路径别名配置，使用 @ 代替 src
+        "@": path.resolve(__dirname, "./src"), // 相对路径别名配置，使用 @ 代替 src
+      },
+    },
+    css: {
+      preprocessorOptions: {
+        // 全局引入变量
+        scss: {
+          javascriptEnabled: true,
+          additionalData: '@import "./src/styles/variable.scss";',
+        },
       },
     },
     server: {
