@@ -22,9 +22,9 @@ const Login = () => {
           </Form.Item>
           <Form.Item
             name="code"
-            rules={[{ required: true, message: "请输入验证码" }]}
+            rules={[{ required: true, message: "请输入密码" }]}
           >
-            <Input size="large" placeholder="请输入验证码" maxLength={6} />
+            <Input size="large" placeholder="请输入密码" maxLength={6} />
           </Form.Item>
 
           <Form.Item>
