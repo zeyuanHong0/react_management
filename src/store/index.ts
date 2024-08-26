@@ -1,16 +1,8 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
 import userStore from "./modules/user";
 
-const useStore = create(
-  persist(
-    (set) => ({
-      ...userStore(set),
-    }),
-    {
-      name: "userInfo",
-    }
-  )
-);
+const useStore: any = create((set: any) => ({
+  ...userStore(set),
+}));
 
 export default useStore;
