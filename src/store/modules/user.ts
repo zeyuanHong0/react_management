@@ -4,18 +4,36 @@ import type {
   LoginResponseData,
   UserInfoResponsedata,
 } from "@/api/user/type";
-import { GET_TOKEN, REMOVE_TOKEN } from "@/utils/token";
-const userStore = (set: any) => {
+import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from "@/utils/token";
+
+export type UserInfo = {
+  name: string;
+  avatar: string;
+};
+
+export type UserState = {
+  token: string | null;
+  userInfo: UserInfo;
+  userLogin: (data: LoginFormData) => Promise<string>;
+  getUserInfo: () => Promise<string>;
+  userLogout: () => Promise<string>;
+};
+const userStore = (set: any): UserState => {
   return {
     token: GET_TOKEN(),
-    username: "", // 用户名
-    avatar: "", // 头像
+    userInfo: localStorage.getItem("userInfo")
+      ? JSON.parse(localStorage.getItem("userInfo") as string)
+      : {
+          name: "",
+          avatar: "",
+        },
     // 登录
     async userLogin(data: LoginFormData) {
       try {
         const res: LoginResponseData = await fetchLogin(data);
         if (res.code === 200) {
           set({ token: res.data as string });
+          SET_TOKEN(res.data as string);
           return "is login";
         } else {
           return Promise.reject(res.message);
@@ -30,7 +48,8 @@ const userStore = (set: any) => {
       try {
         const res: UserInfoResponsedata = await fetchUserInfo();
         if (res.code === 200) {
-          set({ username: res.data.name, avatar: res.data.avatar });
+          set({ userInfo: res.data });
+          localStorage.setItem("userInfo", JSON.stringify(res.data));
           return "获取用户信息成功";
         } else {
           return Promise.reject(new Error(res.message));
