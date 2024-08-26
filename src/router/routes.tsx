@@ -1,15 +1,19 @@
 import React, { lazy, Suspense } from "react";
-
-
-const Login = lazy(() => import("@/pages/login"));
+import Login from "@/pages/login";
+import Layout from "@/pages/layout";
+import Authorization from "@/components/Authorization";
 
 const routes = [
   {
     path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/",
     element: (
-      <Suspense fallback={"加载中"}>
-        <Login />
-      </Suspense>
+      <Authorization>
+        <Layout />
+      </Authorization>
     ),
   },
 ];
