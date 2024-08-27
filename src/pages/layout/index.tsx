@@ -1,5 +1,6 @@
 import "./index.scss";
 import { notification, Menu } from "antd";
+import type { MenuProps } from 'antd';
 import { getTime } from "@/utils/getTime";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
