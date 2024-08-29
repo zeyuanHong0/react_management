@@ -1,0 +1,56 @@
+.layout_container {
+    width: 100%;
+    height: 100vh;
+    .layout_menu {
+        width: $base-menu-width;
+        height: 100vh;
+        background: $base-menu-background;
+        color: #fff;
+        // 过渡效果
+        transition: all 0.2s ease-in-out;
+
+        .scrollbar {
+            width: 100%;
+            height: calc(100vh - #{$base-menu-logo-height});
+
+            .my_el_menu {
+                border-right: none;
+            }
+        }
+
+        &.fold {
+            width: $base-menu-min-width;
+        }
+    }
+
+    .layout_tabbar {
+        position: fixed;
+        top: 0;
+        left: $base-menu-width;
+        width: calc(100% - #{$base-menu-width});
+        height: $base-tabbar-height;
+        transition: all 0.2s ease-in-out;
+        background: #bfa;
+
+        &.fold {
+            width: calc(100vw - #{$base-menu-min-width});
+            left: $base-menu-min-width;
+        }
+    }
+    .layout_content {
+        position: absolute;
+        top: $base-tabbar-height;
+        left: $base-menu-width;
+        width: calc(100% - #{$base-menu-width});
+        height: calc(100vh - #{$base-tabbar-height});
+        padding: 20px;
+        // background: skyblue;
+        overflow: auto;
+        transition: all 0.2s ease-in-out;
+
+        &.fold {
+            width: calc(100vw - #{$base-menu-min-width});
+            left: $base-menu-min-width;
+        }
+    }
+}

@@ -1,6 +1,6 @@
 import "./index.scss";
 import { notification, Menu } from "antd";
-import type { MenuProps } from 'antd';
+import type { MenuProps } from "antd";
 import { getTime } from "@/utils/getTime";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
@@ -24,7 +24,14 @@ const Layout = () => {
   return (
     <>
       {contextHolder}
-      <div>首页</div>
+      <div className="layout_container">
+        {/* 左侧菜单栏 */}
+        <div className="layout_menu">{/* 菜单内容 */}</div>
+        {/* 顶部 haeder */}
+        <div className="layout_tabbar"></div>
+        {/* 右侧内容 */}
+        <div className="layout_content"></div>
+      </div>
     </>
   );
 };
