@@ -2,7 +2,7 @@ import "./index.scss";
 import { notification, Menu } from "antd";
 import type { MenuProps } from "antd";
 import { getTime } from "@/utils/getTime";
-import { setSessionStorage, getSessionStorage } from "@/utils/storage"; // {getSessionStorage}
+import { setSessionStorage, getSessionStorage } from "@/utils/storage";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Logo from "./logo";
