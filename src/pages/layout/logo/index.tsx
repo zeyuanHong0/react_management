@@ -1,6 +1,6 @@
 const Logo = () => {
   return (
-    <div className="w-full h-base-menu-logo-height  flex items-center justify-center gap-2.5">
+    <div className="w-full h-base-menu-logo-height flex items-center justify-center gap-2.5">
       <img
         className="w-9 h-9 rounded-full"
         src="../../../../public/Logo.JPG"
