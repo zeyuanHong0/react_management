@@ -4,6 +4,7 @@ import type { MenuProps } from "antd";
 import { getTime } from "@/utils/getTime";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import Logo from "./logo";
 
 const Layout = () => {
   const location = useLocation();
@@ -26,7 +27,9 @@ const Layout = () => {
       {contextHolder}
       <div className="layout_container">
         {/* 左侧菜单栏 */}
-        <div className="layout_menu">{/* 菜单内容 */}</div>
+        <div className="layout_menu">
+          <Logo />
+          {/* 菜单内容 */}</div>
         {/* 顶部 haeder */}
         <div className="layout_tabbar"></div>
         {/* 右侧内容 */}
