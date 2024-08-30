@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { Form, Input, Button, message } from "antd";
 import type { FormProps } from "antd";
 import useStore from "@/store";
+import { useEffect } from "react";
+import { setSessionStorage } from "@/utils/storage";
 
 type FieldType = {
   username: string;
@@ -14,6 +16,10 @@ const Login = () => {
     console.log(values);
     handleLogin(values);
   };
+
+  useEffect(() => {
+    setSessionStorage("hasShownWelcome", "false");
+  }, []);
   // 登录操作
   const handleLogin = async ({ username, password }: FieldType) => {
     try {

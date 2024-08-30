@@ -9,7 +9,7 @@ export default {
       },
       height: {
         "base-menu-logo-height": "50px",
-        "base-menu-logo-height": "50px",
+        "base-tabbar-height": "50px",
       },
       backgroundColor: {
         "base-menu-background": "#001529",
