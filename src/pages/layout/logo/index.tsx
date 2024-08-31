@@ -1,3 +1,4 @@
+// 暂时不使用这个组件 新的组件在 src/components/Logo/index.tsx
 const Logo = () => {
   return (
     <div className="w-full h-base-menu-logo-height flex items-center justify-center gap-2.5">
