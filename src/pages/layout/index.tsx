@@ -1,15 +1,17 @@
 import "./index.scss";
-import { notification, Menu } from "antd";
-import type { MenuProps } from "antd";
+import { notification } from "antd";
 import { getTime } from "@/utils/getTime";
 import { setSessionStorage, getSessionStorage } from "@/utils/storage";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import Logo from "./logo";
+import Logo from "@/components/Logo";
+import { useThemeToken } from "@/hooks/useThemeToken";
 
 const Layout = () => {
   const location = useLocation();
   const [api, contextHolder] = notification.useNotification();
+  const { colorPrimary, colorTextBase, colorBgElevated, colorBorder } =
+    useThemeToken();
 
   useEffect(() => {
     const hasShownWelcome = getSessionStorage("hasShownWelcome");
@@ -30,8 +32,16 @@ const Layout = () => {
       {contextHolder}
       <div className="layout_container w-full h-screen">
         {/* 左侧菜单栏 */}
-        <div className="layout_menu w-base-menu-width h-screen bg-base-menu-background text-white">
-          <Logo />
+        <div className="layout_menu w-base-menu-width h-screen bg-white text-white">
+          <div className="flex items-center justify-center mt-[10px]">
+            <Logo />
+            <span
+              className="ml-2 text-xl font-bold"
+              style={{ color: colorPrimary }}
+            >
+              Alexander Smith
+            </span>
+          </div>
           {/* 菜单内容 */}
         </div>
         {/* 顶部 haeder */}
