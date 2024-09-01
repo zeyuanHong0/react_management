@@ -4,8 +4,11 @@ import { getTime } from "@/utils/getTime";
 import { setSessionStorage, getSessionStorage } from "@/utils/storage";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import Logo from "@/components/Logo";
+
 import { useThemeToken } from "@/hooks/useThemeToken";
+
+import Logo from "@/components/Logo";
+import Nav from "./nav";
 
 const Layout = () => {
   const location = useLocation();
@@ -43,6 +46,7 @@ const Layout = () => {
             </span>
           </div>
           {/* 菜单内容 */}
+          <Nav />
         </div>
         {/* 顶部 haeder */}
         <div className="layout_tabbar fixed top-[0] left-[260px] w-[calc(100%-260px)] h-[50px]"></div>
