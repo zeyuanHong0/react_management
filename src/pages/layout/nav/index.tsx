@@ -40,12 +40,8 @@ const Nav = () => {
   ];
   const onClick = () => {};
   return (
-    <>
-      <Scrollbar
-        style={{
-          height: "calc(100vh - 70px)",
-        }}
-      >
+    <div className="mt-3">
+      <Scrollbar style={{ height: "calc(100% - 60px);" }}>
         {/* <!-- Sidebar Menu --> */}
         <Menu
           mode="inline"
@@ -56,7 +52,7 @@ const Nav = () => {
           style={menuStyle}
         />
       </Scrollbar>
-    </>
+    </div>
   );
 };
 

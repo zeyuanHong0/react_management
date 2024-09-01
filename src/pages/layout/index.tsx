@@ -9,6 +9,7 @@ import { useThemeToken } from "@/hooks/useThemeToken";
 
 import Logo from "@/components/Logo";
 import Nav from "./nav";
+import { styled } from "styled-components";
 
 const Layout = () => {
   const location = useLocation();
@@ -36,7 +37,7 @@ const Layout = () => {
       <div className="layout_container w-full h-screen">
         {/* 左侧菜单栏 */}
         <div className="layout_menu w-base-menu-width h-screen bg-white text-white">
-          <div className="flex items-center justify-center mt-[10px]">
+          <div className="flex items-center h-[60px] justify-center pt-[10px] box-border">
             <Logo />
             <span
               className="ml-2 text-xl font-bold"
