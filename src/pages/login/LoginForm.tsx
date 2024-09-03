@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { Form, Input, Button, message, theme, Alert } from "antd";
+import { Form, Input, Button, message, Alert } from "antd";
 import type { FormProps } from "antd";
 
 import ProTag from "./components/Tag";
 import useStore from "@/store";
+import { useThemeToken } from "@/theme/hooks";
 
 const LoginForm = () => {
   const navigator = useNavigate();
@@ -13,7 +14,7 @@ const LoginForm = () => {
   };
   const { userLogin, getUserInfo } = useStore();
   // 获取主题
-  const { token: themeToken } = theme.useToken();
+  const { colorInfoTextHover } = useThemeToken();
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
     console.log(values);
     handleLogin(values);
@@ -68,7 +69,7 @@ const LoginForm = () => {
                   <ProTag className="flex-shrink-0">Admin 账号</ProTag>
                   <strong
                     className="ml-1"
-                    style={{ color: themeToken.colorInfoTextHover }}
+                    style={{ color: colorInfoTextHover }}
                   >
                     <span>admin</span>
                   </strong>
@@ -78,7 +79,7 @@ const LoginForm = () => {
                   <ProTag className="flex-shrink-0">密码</ProTag>
                   <strong
                     className=" ml-1"
-                    style={{ color: themeToken.colorInfoTextHover }}
+                    style={{ color: colorInfoTextHover }}
                   >
                     111111
                   </strong>

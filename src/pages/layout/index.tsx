@@ -5,7 +5,7 @@ import { setSessionStorage, getSessionStorage } from "@/utils/storage";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
-import { useThemeToken } from "@/hooks/useThemeToken";
+import { useThemeToken } from "@/theme/hooks";
 
 import Logo from "@/components/Logo";
 import Nav from "./nav";

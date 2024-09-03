@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-import { useThemeToken } from "@/hooks/useThemeToken";
+import { useThemeToken } from "@/theme/hooks";
 
 import { Iconify } from "../Icon";
 

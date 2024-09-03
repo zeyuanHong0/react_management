@@ -1,21 +1,22 @@
 import { useEffect } from "react";
-import { Layout, theme } from "antd";
+import { Layout } from "antd";
 import Color from "color";
 
 import LoginImg from "@/assets/images/bg_login.png";
 import Overlay2 from "@/assets/images/overlay_2.jpg";
 import { setSessionStorage } from "@/utils/storage";
+import { useThemeToken } from "@/theme/hooks";
 
 import LoginForm from "./LoginForm";
 
 const Login = () => {
   // 获取主题
-  const { token: themeToken } = theme.useToken();
+  const { colorBgElevated } = useThemeToken();
   useEffect(() => {
     setSessionStorage("hasShownWelcome", "false");
   }, []);
 
-  const gradientBg = Color(themeToken.colorBgElevated).alpha(0.9).toString();
+  const gradientBg = Color(colorBgElevated).alpha(0.9).toString();
   const bg = `linear-gradient(${gradientBg}, ${gradientBg}) center center / cover no-repeat,url(${Overlay2})`;
   return (
     <>

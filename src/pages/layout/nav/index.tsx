@@ -4,7 +4,7 @@ import { CSSProperties, useEffect, useMemo, useState } from "react";
 import { useLocation, useMatches, useNavigate } from "react-router-dom";
 
 import { menuRoutes } from "@/router/menuList";
-import { useThemeToken } from "@/hooks/useThemeToken";
+import { useThemeToken } from "@/theme/hooks";
 import Scrollbar from "@/components/Scrollbar";
 
 const Nav = () => {
