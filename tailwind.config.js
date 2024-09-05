@@ -5,7 +5,7 @@ export default {
     extend: {
       width: {
         "base-menu-width": "260px",
-        "base-menu-min-width": "56px",
+        "base-menu-min-width": "81px",
       },
       height: {
         "base-menu-logo-height": "50px",

@@ -5,12 +5,15 @@ import { useLocation, useMatches, useNavigate } from "react-router-dom";
 
 import { menuRoutes } from "@/router/menuList";
 import { useThemeToken } from "@/theme/hooks";
+import useStore from "@/store";
+
 import Scrollbar from "@/components/Scrollbar";
 
 const Nav = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { colorBgElevated } = useThemeToken();
+  const { isFold } = useStore();
   const menuStyle: CSSProperties = {
     background: colorBgElevated,
   };
@@ -27,6 +30,8 @@ const Nav = () => {
           selectedKeys={[pathname]}
           onClick={onClick}
           style={menuStyle}
+          inlineCollapsed={isFold}
+          theme="light"
         />
       </Scrollbar>
     </div>

@@ -5,8 +5,10 @@ import { setSessionStorage, getSessionStorage } from "@/utils/storage";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Color from "color";
+import classNames from "classnames";
 
 import { useThemeToken } from "@/theme/hooks";
+import useStore from "@/store";
 
 import Logo from "@/components/Logo";
 import Nav from "./nav";
@@ -16,6 +18,8 @@ const Layout = () => {
   const location = useLocation();
   const [api, contextHolder] = notification.useNotification();
   const { colorPrimary, colorBorder } = useThemeToken();
+  const { isFold } = useStore();
+  console.log("🚀 ~ Layout ~ isFold:", isFold);
 
   useEffect(() => {
     const hasShownWelcome = getSessionStorage("hasShownWelcome");
@@ -37,7 +41,16 @@ const Layout = () => {
       <div className="layout_container w-full h-screen">
         {/* 左侧菜单栏 */}
         <div
-          className="layout_menu w-base-menu-width h-screen bg-white text-white"
+          className={classNames(
+            "layout_menu",
+            "h-screen",
+            "bg-white",
+            "text-white",
+            {
+              "w-base-menu-width": !isFold,
+              "w-base-menu-min-width": isFold,
+            }
+          )}
           style={{
             borderRight: `1px dashed ${Color(colorBorder)
               .alpha(0.6)
@@ -46,22 +59,52 @@ const Layout = () => {
         >
           <div className="flex items-center h-[60px] justify-center pt-[10px] box-border">
             <Logo />
-            <span
-              className="ml-2 text-xl font-bold"
-              style={{ color: colorPrimary }}
-            >
-              Alexander Smith
-            </span>
+            {!isFold && (
+              <span
+                className="ml-2 text-xl font-bold"
+                style={{ color: colorPrimary }}
+              >
+                Alexander Smith
+              </span>
+            )}
           </div>
           {/* 菜单内容 */}
           <Nav />
         </div>
         {/* 顶部 haeder */}
-        <div className="layout_tabbar fixed top-[0] left-[260px] w-[calc(100%-260px)] h-[50px]">
+        <div
+          className={classNames(
+            "layout_tabbar",
+            "fixed",
+            "top-[0]",
+            "h-[50px]",
+            {
+              "left-[260px]": !isFold,
+              "left-[81px]": isFold,
+              "w-[calc(100%-260px)]": !isFold,
+              "w-[calc(100%-81px)]": isFold,
+            }
+          )}
+        >
           <Tabbar />
         </div>
         {/* 右侧内容 */}
-        <div className="layout_content absolute top-[50px] left-[260px] w-[calc(100%-260px)] h-[calc(100vh-50px)] p-[20px] overflow-auto"></div>
+        <div
+          className={classNames(
+            "layout_content",
+            "absolute",
+            "top-[50px]",
+            "p-[20px]",
+            "overflow-auto",
+            "h-[calc(100vh-50px)]",
+            {
+              "left-[260px]": !isFold,
+              "w-[calc(100%-260px)]": !isFold,
+              "w-[calc(100%-81px)]": isFold,
+              "left-[81px]": isFold,
+            }
+          )}
+        ></div>
       </div>
     </>
   );
