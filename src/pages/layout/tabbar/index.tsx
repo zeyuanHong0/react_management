@@ -1,6 +1,10 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import { FullscreenOutlined, FullscreenExitOutlined } from "@ant-design/icons";
+import {
+  FullscreenOutlined,
+  FullscreenExitOutlined,
+  ReloadOutlined,
+} from "@ant-design/icons";
 
 import useStore from "@/store";
 
@@ -23,7 +27,10 @@ const Tabbar = () => {
       <div className="cursor-pointer" onClick={() => setFold(!isFold)}>
         {isFold ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </div>
-      <div>
+      <div className="gap-3 flex cursor-pointer">
+        {/* 刷新 */}
+        <ReloadOutlined onClick={() => window.location.reload()} />
+        {/* 全屏 */}
         <Icon onClick={handleFullScreen} className="cursor-pointer" />
       </div>
     </div>
