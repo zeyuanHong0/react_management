@@ -31,6 +31,7 @@ const userStore = (set: any): UserState => {
     async userLogin(data: LoginFormData) {
       try {
         const res: LoginResponseData = await fetchLogin(data);
+        console.log("🚀 ~ userLogin ~ res:", res);
         if (res.code === 200) {
           set({ token: res.data as string });
           SET_TOKEN(res.data as string);

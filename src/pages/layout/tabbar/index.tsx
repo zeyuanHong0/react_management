@@ -4,13 +4,46 @@ import {
   FullscreenOutlined,
   FullscreenExitOutlined,
   ReloadOutlined,
+  DownOutlined,
 } from "@ant-design/icons";
+import { Avatar, Button, Dropdown, notification } from "antd";
+import type { MenuProps } from "antd";
+import { useNavigate } from "react-router-dom";
 
 import useStore from "@/store";
 
 const Tabbar = () => {
-  const { isFold, setFold } = useStore();
+  const navigate = useNavigate();
+  const [api, contextHolder] = notification.useNotification();
+  const { isFold, setFold, userInfo, userLogout } = useStore();
   const [fullScreen, setFullScreen] = useState<boolean>(false);
+
+  const handleLogout = async () => {
+    try {
+      const res: Promise<string> | string = await userLogout();
+      if (res === "退出登录成功") {
+        // 跳转到登录页
+        navigate("/login", { replace: true });
+      }
+    } catch (error: any) {
+      api.warning({
+        message: `退出登录失败:${error.message}`,
+        description: "请重试",
+        placement: "topRight",
+      });
+    }
+  };
+
+  const items: MenuProps["items"] = [
+    {
+      key: "1",
+      label: (
+        <div className="text-center" onClick={handleLogout}>
+          退出登录
+        </div>
+      ),
+    },
+  ];
 
   const handleFullScreen = () => {
     if (document.fullscreenElement) {
@@ -23,17 +56,33 @@ const Tabbar = () => {
   const Icon = fullScreen ? FullscreenExitOutlined : FullscreenOutlined;
 
   return (
-    <div className="w-full h-full flex justify-between items-center bg-[rgb(247, 245, 245)] pl-[10px] pr-[10px]">
-      <div className="cursor-pointer" onClick={() => setFold(!isFold)}>
-        {isFold ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+    <>
+      {contextHolder}
+      <div className="w-full h-full flex justify-between items-center bg-[rgb(247, 245, 245)] pl-[10px] pr-[20px]">
+        <div className="cursor-pointer" onClick={() => setFold(!isFold)}>
+          {isFold ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+        </div>
+        <div className="gap-4 flex cursor-pointer">
+          {/* 刷新 */}
+          <Button
+            type="dashed"
+            shape="circle"
+            icon={<ReloadOutlined />}
+            onClick={() => window.location.reload()}
+          />
+          {/* 全屏 */}
+          <Button type="dashed" icon={<Icon />} onClick={handleFullScreen} />
+          {/* 头像 */}
+          <div className="flex items-center gap-1">
+            <Avatar src={<img src={userInfo.avatar} alt="avatar" />} />
+            <span>{userInfo.name}</span>
+            <Dropdown menu={{ items }} placement="bottom">
+              <DownOutlined />
+            </Dropdown>
+          </div>
+        </div>
       </div>
-      <div className="gap-3 flex cursor-pointer">
-        {/* 刷新 */}
-        <ReloadOutlined onClick={() => window.location.reload()} />
-        {/* 全屏 */}
-        <Icon onClick={handleFullScreen} className="cursor-pointer" />
-      </div>
-    </div>
+    </>
   );
 };
 
