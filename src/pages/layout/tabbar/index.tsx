@@ -58,7 +58,7 @@ const Tabbar = () => {
   return (
     <>
       {contextHolder}
-      <div className="w-full h-full flex justify-between items-center bg-[rgb(247, 245, 245)] pl-[10px] pr-[20px]">
+      <div className="w-full h-full flex justify-between items-center bg-[rgb(247, 245, 245)] pl-[10px] pr-[20px] box-border">
         <div className="cursor-pointer" onClick={() => setFold(!isFold)}>
           {isFold ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         </div>

@@ -12,7 +12,7 @@ export default {
         "base-tabbar-height": "50px",
       },
       backgroundColor: {
-        "base-menu-background": "#001529",
+        "base-menu-background": "#fff",
       },
       fontSize: {
         "base-logo-title-fontSize": "18px",

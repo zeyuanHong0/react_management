@@ -43,7 +43,7 @@ const Layout = () => {
         <div
           className={classNames(
             "layout_menu",
-            "h-screen",
+            "h-full",
             "bg-white",
             "text-white",
             {
@@ -95,7 +95,8 @@ const Layout = () => {
             "absolute",
             "top-[50px]",
             "p-[20px]",
-            "overflow-auto",
+            "box-border",
+            "overflow-y-auto",
             "h-[calc(100vh-50px)]",
             {
               "left-[260px]": !isFold,

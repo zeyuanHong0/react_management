@@ -20,8 +20,12 @@ const Nav = () => {
   const menuList: MenuProps["items"] = menuRoutes;
   const onClick = () => {};
   return (
-    <div className="mt-3">
-      <Scrollbar style={{ height: "calc(100% - 60px)" }}>
+    <div className="pt-3 box-border h-[calc(100vh-60px)]">
+      <Scrollbar
+        style={{
+          height: "100%",
+        }}
+      >
         {/* <!-- Sidebar Menu --> */}
         <Menu
           mode="inline"
