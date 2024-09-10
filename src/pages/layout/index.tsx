@@ -2,7 +2,7 @@ import "./index.scss";
 import { notification } from "antd";
 import { getTime } from "@/utils/getTime";
 import { setSessionStorage, getSessionStorage } from "@/utils/storage";
-import { useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Color from "color";
 import classNames from "classnames";
@@ -13,6 +13,7 @@ import useStore from "@/store";
 import Logo from "@/components/Logo";
 import Nav from "./nav";
 import Tabbar from "./tabbar";
+import MultiTabs from "./tabs";
 
 const Layout = () => {
   const location = useLocation();
@@ -91,12 +92,8 @@ const Layout = () => {
         {/* 右侧内容 */}
         <div
           className={classNames(
-            "layout_content",
             "absolute",
             "top-[50px]",
-            "p-[20px]",
-            "box-border",
-            "overflow-y-auto",
             "h-[calc(100vh-50px)]",
             {
               "left-[260px]": !isFold,
@@ -105,7 +102,22 @@ const Layout = () => {
               "left-[81px]": isFold,
             }
           )}
-        ></div>
+        >
+          {/* tabs */}
+          <div
+            className="w-full h-[40px]"
+            style={{
+              borderBottom: `1px dashed ${Color(colorBorder)
+                .alpha(0.6)
+                .toString()}`,
+            }}
+          >
+            <MultiTabs />
+          </div>
+          <div className="layout_content w-full h-[calc(100vh-90px)]">
+            <Outlet />
+          </div>
+        </div>
       </div>
     </>
   );

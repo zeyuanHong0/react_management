@@ -18,7 +18,9 @@ const Nav = () => {
     background: colorBgElevated,
   };
   const menuList: MenuProps["items"] = menuRoutes;
-  const onClick = () => {};
+  const onClick: MenuProps["onClick"] = ({ key }) => {
+    navigate(key);
+  };
   return (
     <div className="pt-3 box-border h-[calc(100vh-60px)]">
       <Scrollbar
