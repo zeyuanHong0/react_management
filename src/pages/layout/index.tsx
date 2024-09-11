@@ -20,7 +20,7 @@ const Layout = () => {
   const [api, contextHolder] = notification.useNotification();
   const { colorPrimary, colorBorder } = useThemeToken();
   const { isFold } = useStore();
-  console.log("🚀 ~ Layout ~ isFold:", isFold);
+  // console.log("🚀 ~ Layout ~ isFold:", isFold);
 
   useEffect(() => {
     const hasShownWelcome = getSessionStorage("hasShownWelcome");

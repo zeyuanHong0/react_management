@@ -65,6 +65,7 @@ const MultiTabs = () => {
       remove(targetKey);
     }
   };
+  const onTabClick = () => {};
   return (
     <StyledMultiTabs>
       <Tabs
@@ -73,6 +74,7 @@ const MultiTabs = () => {
         activeKey={activeKey}
         onEdit={onEdit}
         items={items}
+        onTabClick={onTabClick}
       />
     </StyledMultiTabs>
   );

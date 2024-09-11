@@ -13,13 +13,14 @@ const Nav = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { colorBgElevated } = useThemeToken();
-  const { isFold } = useStore();
+  const { isFold, openKeys, setOpenKeys } = useStore();
   const menuStyle: CSSProperties = {
     background: colorBgElevated,
   };
   const menuList: MenuProps["items"] = menuRoutes;
   const onClick: MenuProps["onClick"] = ({ key }) => {
     navigate(key);
+    setOpenKeys(key);
   };
   return (
     <div className="pt-3 box-border h-[calc(100vh-60px)]">
@@ -34,6 +35,7 @@ const Nav = () => {
           items={menuList}
           className="h-full !border-none"
           selectedKeys={[pathname]}
+          defaultOpenKeys={openKeys}
           onClick={onClick}
           style={menuStyle}
           inlineCollapsed={isFold}
