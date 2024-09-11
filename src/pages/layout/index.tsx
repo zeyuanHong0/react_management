@@ -3,7 +3,7 @@ import { notification } from "antd";
 import { getTime } from "@/utils/getTime";
 import { setSessionStorage, getSessionStorage } from "@/utils/storage";
 import { Outlet, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Color from "color";
 import classNames from "classnames";
 
@@ -20,7 +20,6 @@ const Layout = () => {
   const [api, contextHolder] = notification.useNotification();
   const { colorPrimary, colorBorder } = useThemeToken();
   const { isFold } = useStore();
-  // console.log("🚀 ~ Layout ~ isFold:", isFold);
 
   useEffect(() => {
     const hasShownWelcome = getSessionStorage("hasShownWelcome");
@@ -28,7 +27,7 @@ const Layout = () => {
       handleWelcome();
       setSessionStorage("hasShownWelcome", "true");
     }
-  }, [location]);
+  }, [location.state?.from]);
   const handleWelcome = () => {
     api.success({
       message: `Hi,${getTime()}好`,

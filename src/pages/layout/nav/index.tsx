@@ -11,14 +11,16 @@ import Scrollbar from "@/components/Scrollbar";
 
 const Nav = () => {
   const { pathname } = useLocation();
+  console.log(pathname);
   const navigate = useNavigate();
   const { colorBgElevated } = useThemeToken();
   const { isFold, openKeys, setOpenKeys } = useStore();
   const menuStyle: CSSProperties = {
     background: colorBgElevated,
   };
-  const menuList: MenuProps["items"] = menuRoutes;
+  const menuList: MenuProps["items"] = useMemo(() => menuRoutes, [menuRoutes]);
   const onClick: MenuProps["onClick"] = ({ key }) => {
+    console.log(openKeys);
     navigate(key);
     setOpenKeys(key);
   };

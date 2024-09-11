@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import React, { lazy, Suspense } from "react";
 import Login from "@/pages/login";
 import Layout from "@/pages/layout";
 import Authorization from "@/components/Authorization";
@@ -29,43 +29,79 @@ const routes = [
       // 首页
       {
         path: "/home",
-        element: <Home />,
+        element: (
+          <Suspense>
+            <Home />
+          </Suspense>
+        ),
       },
       // 数据大屏
       {
         path: "/screen",
-        element: <Screen />,
+        element: (
+          <Suspense>
+            <Screen />
+          </Suspense>
+        ),
       },
       // 用户管理
       {
         path: "/acl/user",
-        element: <User />,
+        element: (
+          <Suspense>
+            <User />
+          </Suspense>
+        ),
       },
       // 权限管理
       {
         path: "/acl/role",
-        element: <Role />,
+        element: (
+          <Suspense>
+            <Role />
+          </Suspense>
+        ),
       },
       // 菜单管理
       {
         path: "/acl/permission",
-        element: <Permission />,
+        element: (
+          <Suspense>
+            <Permission />
+          </Suspense>
+        ),
       },
       {
         path: "/product/trademark",
-        element: <Trademark />,
+        element: (
+          <Suspense>
+            <Trademark />
+          </Suspense>
+        ),
       },
       {
         path: "/product/attr",
-        element: <Attr />,
+        element: (
+          <Suspense>
+            <Attr />
+          </Suspense>
+        ),
       },
       {
         path: "/product/spu",
-        element: <Spu />,
+        element: (
+          <Suspense>
+            <Spu />
+          </Suspense>
+        ),
       },
       {
         path: "/product/sku",
-        element: <Sku />,
+        element: (
+          <Suspense>
+            <Sku />
+          </Suspense>
+        ),
       },
     ],
   },
