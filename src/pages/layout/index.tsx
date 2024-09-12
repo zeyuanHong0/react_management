@@ -8,7 +8,7 @@ import Color from "color";
 import classNames from "classnames";
 
 import { useThemeToken } from "@/theme/hooks";
-import useStore from "@/store";
+import useSettingStore from "@/store/settingStore";
 
 import Logo from "@/components/Logo";
 import Nav from "./nav";
@@ -19,7 +19,8 @@ const Layout = () => {
   const location = useLocation();
   const [api, contextHolder] = notification.useNotification();
   const { colorPrimary, colorBorder } = useThemeToken();
-  const { isFold } = useStore();
+  const { isFold } = useSettingStore();
+  console.log("🚀 ~ Layout ~ useSettingStore():", useSettingStore());
 
   useEffect(() => {
     const hasShownWelcome = getSessionStorage("hasShownWelcome");

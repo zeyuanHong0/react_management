@@ -10,12 +10,14 @@ import { Avatar, Button, Dropdown, notification } from "antd";
 import type { MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
 
+import useSettingStore from "@/store/settingStore";
 import useStore from "@/store";
 
 const Tabbar = () => {
   const navigate = useNavigate();
   const [api, contextHolder] = notification.useNotification();
-  const { isFold, setFold, userInfo, userLogout } = useStore();
+  const { userInfo, userLogout } = useStore();
+  const { isFold, setFold } = useSettingStore();
   const [fullScreen, setFullScreen] = useState<boolean>(false);
 
   const handleLogout = async () => {

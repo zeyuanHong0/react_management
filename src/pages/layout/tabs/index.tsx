@@ -1,9 +1,10 @@
 import { Tabs, TabsProps } from "antd";
 import { useRef, useState } from "react";
 import styled from "styled-components";
-import Color from "color";
+// import Color from "color";
 
-import { useThemeToken } from "@/theme/hooks";
+// import { useThemeToken } from "@/theme/hooks";
+import useSettingStore from "@/store/settingStore";
 
 const initialItems = [
   { label: "Tab 1", key: "1" },
@@ -15,7 +16,8 @@ const initialItems = [
   },
 ];
 const MultiTabs = () => {
-  const { colorPrimary, colorBorder } = useThemeToken();
+  // const { colorPrimary, colorBorder } = useThemeToken();
+  const { openTabs } = useSettingStore();
   const [activeKey, setActiveKey] = useState(initialItems[0].key);
   const [items, setItems] = useState(initialItems);
   const newTabIndex = useRef(0);
@@ -72,8 +74,7 @@ const MultiTabs = () => {
         type="editable-card"
         onChange={onChange}
         activeKey={activeKey}
-        onEdit={onEdit}
-        items={items}
+        items={openTabs}
         onTabClick={onTabClick}
       />
     </StyledMultiTabs>

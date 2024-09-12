@@ -22,3 +22,22 @@ export const findParentKeys = (
   }
   return null;
 };
+
+// 根据 key 查找对应的 label
+export const findLabelByKey = (
+  menuRoutes: any[],
+  targetKey: string
+): string | null => {
+  for (const item of menuRoutes) {
+    if (item.key === targetKey) {
+      return item.label;
+    }
+    if (item.children) {
+      const result = findLabelByKey(item.children, targetKey);
+      if (result) {
+        return result;
+      }
+    }
+  }
+  return null;
+};

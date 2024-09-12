@@ -1,11 +1,11 @@
 import { Menu, MenuProps } from "antd";
-import Color from "color";
-import { CSSProperties, useEffect, useMemo, useState } from "react";
-import { useLocation, useMatches, useNavigate } from "react-router-dom";
+// import Color from "color";
+import { CSSProperties, useMemo } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { menuRoutes } from "@/router/menuList";
 import { useThemeToken } from "@/theme/hooks";
-import useStore from "@/store";
+import useSettingStore from "@/store/settingStore";
 
 import Scrollbar from "@/components/Scrollbar";
 
@@ -14,15 +14,15 @@ const Nav = () => {
   console.log(pathname);
   const navigate = useNavigate();
   const { colorBgElevated } = useThemeToken();
-  const { isFold, openKeys, setOpenKeys } = useStore();
+  const { isFold, openKeys, setOpenKeys, addTabs } = useSettingStore();
   const menuStyle: CSSProperties = {
     background: colorBgElevated,
   };
   const menuList: MenuProps["items"] = useMemo(() => menuRoutes, [menuRoutes]);
   const onClick: MenuProps["onClick"] = ({ key }) => {
-    console.log(openKeys);
     navigate(key);
     setOpenKeys(key);
+    addTabs(key);
   };
   return (
     <div className="pt-3 box-border h-[calc(100vh-60px)]">
