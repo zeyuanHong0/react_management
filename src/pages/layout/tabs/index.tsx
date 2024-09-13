@@ -17,7 +17,7 @@ const initialItems = [
 ];
 const MultiTabs = () => {
   // const { colorPrimary, colorBorder } = useThemeToken();
-  const { openTabs } = useSettingStore();
+  const { openTabs, removeTabs } = useSettingStore();
   const [activeKey, setActiveKey] = useState(initialItems[0].key);
   const [items, setItems] = useState(initialItems);
   const newTabIndex = useRef(0);
@@ -26,56 +26,25 @@ const MultiTabs = () => {
     setActiveKey(newActiveKey);
   };
 
-  const add = () => {
-    const newActiveKey = `newTab${newTabIndex.current++}`;
-    const newPanes = [...items];
-    newPanes.push({
-      label: "New Tab",
-      key: newActiveKey,
-    });
-    setItems(newPanes);
-    setActiveKey(newActiveKey);
-  };
-
-  const remove = (targetKey: TargetKey) => {
-    let newActiveKey = activeKey;
-    let lastIndex = -1;
-    items.forEach((item, i) => {
-      if (item.key === targetKey) {
-        lastIndex = i - 1;
-      }
-    });
-    const newPanes = items.filter((item) => item.key !== targetKey);
-    if (newPanes.length && newActiveKey === targetKey) {
-      if (lastIndex >= 0) {
-        newActiveKey = newPanes[lastIndex].key;
-      } else {
-        newActiveKey = newPanes[0].key;
-      }
-    }
-    setItems(newPanes);
-    setActiveKey(newActiveKey);
-  };
-
   const onEdit = (
     targetKey: React.MouseEvent | React.KeyboardEvent | string,
     action: "add" | "remove"
   ) => {
-    if (action === "add") {
-      add();
-    } else {
-      remove(targetKey);
+    if (action === "remove") {
+      removeTabs(targetKey as string);
     }
   };
   const onTabClick = () => {};
   return (
     <StyledMultiTabs>
       <Tabs
+        hideAdd
         type="editable-card"
         onChange={onChange}
         activeKey={activeKey}
         items={openTabs}
         onTabClick={onTabClick}
+        onEdit={onEdit}
       />
     </StyledMultiTabs>
   );

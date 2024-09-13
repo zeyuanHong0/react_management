@@ -42,7 +42,7 @@ const useSettingStore = create((set: any): settingState => {
         const label = findLabelByKey(menuRoutes, key) as string;
         return {
           ...state,
-          openTabs: [{ label, key }, ...state.openTabs],
+          openTabs: [...state.openTabs, { label, key }],
         };
       });
     },
