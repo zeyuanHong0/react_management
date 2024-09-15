@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { menuRoutes } from "@/router/menuList";
 import { useThemeToken } from "@/theme/hooks";
-import useSettingStore from "@/store/settingStore";
+import useSettingStore from "@/store/settingStore.ts";
 
 import Scrollbar from "@/components/Scrollbar";
 

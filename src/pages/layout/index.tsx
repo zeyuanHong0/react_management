@@ -8,7 +8,7 @@ import Color from "color";
 import classNames from "classnames";
 
 import { useThemeToken } from "@/theme/hooks";
-import useSettingStore from "@/store/settingStore";
+import useSettingStore from "@/store/settingStore.ts";
 
 import Logo from "@/components/Logo";
 import Nav from "./nav";

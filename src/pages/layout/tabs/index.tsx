@@ -5,28 +5,16 @@ import styled from "styled-components";
 // import Color from "color";
 
 // import { useThemeToken } from "@/theme/hooks";
-import useSettingStore from "@/store/settingStore";
+import useSettingStore from "@/store/settingStore.ts";
 
-const initialItems = [
-  { label: "Tab 1", key: "1" },
-  { label: "Tab 2", key: "2" },
-  {
-    label: "Tab 3",
-    key: "3",
-    closable: false,
-  },
-];
 const MultiTabs = () => {
   // const { colorPrimary, colorBorder } = useThemeToken();
   const navigate = useNavigate();
-  const { openTabs, removeTabs, setOpenKeys } = useSettingStore();
-  const [activeKey, setActiveKey] = useState(initialItems[0].key);
-  const [items, setItems] = useState(initialItems);
-  const newTabIndex = useRef(0);
+  const { openTabs, removeTabs, activeTabsKey, setActiveTabsKey } =
+    useSettingStore();
 
   const onChange = (newActiveKey: string) => {
-    setActiveKey(newActiveKey);
-    // setOpenKeys(newActiveKey);
+    setActiveTabsKey(newActiveKey);
     navigate(newActiveKey);
   };
 
@@ -35,17 +23,19 @@ const MultiTabs = () => {
     action: "add" | "remove"
   ) => {
     if (action === "remove") {
-      removeTabs(targetKey as string);
+      removeTabs(targetKey as string, navigate);
     }
   };
-  const onTabClick = () => {};
+  const onTabClick = (key: string) => {
+    setActiveTabsKey(key);
+  };
   return (
     <StyledMultiTabs>
       <Tabs
         hideAdd
         type="editable-card"
         onChange={onChange}
-        activeKey={activeKey}
+        activeKey={activeTabsKey}
         items={openTabs}
         onTabClick={onTabClick}
         onEdit={onEdit}

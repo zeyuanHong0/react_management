@@ -10,7 +10,7 @@ import { Avatar, Button, Dropdown, notification } from "antd";
 import type { MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
 
-import useSettingStore from "@/store/settingStore";
+import useSettingStore from "@/store/settingStore.ts";
 import useStore from "@/store";
 
 const Tabbar = () => {

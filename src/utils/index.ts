@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 // 递归查找 key 的父级
 export const findParentKeys = (
   menuRoutes: any[],
@@ -40,4 +42,12 @@ export const findLabelByKey = (
     }
   }
   return null;
+};
+
+// 路由跳转
+export const handleNavigate = (
+  key: string,
+  navigate: (key: string) => void
+) => {
+  navigate(key);
 };
