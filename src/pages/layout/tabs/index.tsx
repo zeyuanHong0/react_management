@@ -1,5 +1,6 @@
 import { Tabs, TabsProps } from "antd";
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 // import Color from "color";
 
@@ -17,13 +18,16 @@ const initialItems = [
 ];
 const MultiTabs = () => {
   // const { colorPrimary, colorBorder } = useThemeToken();
-  const { openTabs, removeTabs } = useSettingStore();
+  const navigate = useNavigate();
+  const { openTabs, removeTabs, setOpenKeys } = useSettingStore();
   const [activeKey, setActiveKey] = useState(initialItems[0].key);
   const [items, setItems] = useState(initialItems);
   const newTabIndex = useRef(0);
 
   const onChange = (newActiveKey: string) => {
     setActiveKey(newActiveKey);
+    // setOpenKeys(newActiveKey);
+    navigate(newActiveKey);
   };
 
   const onEdit = (
