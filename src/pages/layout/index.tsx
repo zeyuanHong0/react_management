@@ -106,15 +106,10 @@ const Layout = () => {
           {/* tabs */}
           <div
             className="w-full h-[40px]"
-            style={{
-              borderBottom: `1px dashed ${Color(colorBorder)
-                .alpha(0.6)
-                .toString()}`,
-            }}
           >
             <MultiTabs />
           </div>
-          <div className="layout_content w-full h-[calc(100vh-90px)]">
+          <div className="layout_content w-full h-[calc(100vh-92px)]">
             <Outlet />
           </div>
         </div>
