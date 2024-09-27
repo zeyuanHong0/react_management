@@ -68,49 +68,43 @@ const useSettingStore = create((set: any): settingState => {
     },
     removeTabs: (key: string, navigate) => {
       set((state: settingState) => {
-        // 判断需要关闭的标签是否是当前激活的标签
-        if (state.activeTabsKey === key) {
-          // 如果是当前激活的标签，判断是否只有一个标签
-          if (state.openTabs.length === 1) {
-            return state;
-          }
-          // 如果有多个标签，找到上一个激活的标签
-          const index = state.openTabs.findIndex(
-            (item: Tab) => item.key === state.activeTabsKey
-          );
-          let activeKey = "";
-          if (index === 0) {
-            activeKey = state.openTabs[1].key;
-          } else {
-            activeKey = state.openTabs[index - 1].key;
-          }
-          setSessionStorage("activeTabsKey", activeKey);
-          handleNavigate(activeKey, navigate);
-          const newOpenTabs = state.openTabs.filter(
-            (item: Tab) => item.key !== key
-          );
-          return {
-            ...state,
-            activeTabsKey: activeKey,
-            openTabs: newOpenTabs.map((tab: Tab) => {
-              return {
-                ...tab,
-                closable: newOpenTabs.length > 1,
-              };
-            }),
-          };
-        }
+        // 过滤出新的 openTabs
         const newOpenTabs = state.openTabs.filter(
           (item: Tab) => item.key !== key
         );
-        return {
-          ...state,
-          openTabs: newOpenTabs.map((tab: Tab) => {
-            return {
+        // 判断需要关闭的标签是否是当前激活的标签
+        if (state.activeTabsKey === key) {
+          // 如果是当前激活的标签，判断是否只有一个标签
+          if (newOpenTabs.length === 0) {
+            return state; // 如果没有标签了，返回当前状态
+          }
+          // 找到下一个激活的标签
+          const index = state.openTabs.findIndex(
+            (item: Tab) => item.key === state.activeTabsKey
+          );
+          let activeKey =
+            index === 0
+              ? newOpenTabs[0].key
+              : newOpenTabs[index - 1]?.key || newOpenTabs[0].key;
+
+          setSessionStorage("activeTabsKey", activeKey);
+          handleNavigate(activeKey, navigate);
+          return {
+            ...state,
+            activeTabsKey: activeKey,
+            openTabs: newOpenTabs.map((tab: Tab) => ({
               ...tab,
               closable: newOpenTabs.length > 1,
-            };
-          }),
+            })),
+          };
+        }
+        // 如果关闭的不是当前激活的标签
+        return {
+          ...state,
+          openTabs: newOpenTabs.map((tab: Tab) => ({
+            ...tab,
+            closable: newOpenTabs.length > 1,
+          })),
         };
       });
     },
