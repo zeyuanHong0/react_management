@@ -7,6 +7,7 @@ import { setSessionStorage, getSessionStorage } from "@/utils/storage";
 type Tab = {
   label: string;
   key: string;
+  closable?: boolean;
 };
 
 type settingState = {
@@ -22,13 +23,18 @@ type settingState = {
 };
 
 const useSettingStore = create((set: any): settingState => {
+  const activeTabsKey = getSessionStorage("activeTabsKey") || menuRoutes[0].key;
+  const initialTabLabel = findLabelByKey(menuRoutes, activeTabsKey) as string;
+
   return {
     isFold: false, // menu 是否折叠
     openKeys: getSessionStorage("openKeys")
       ? JSON.parse(getSessionStorage("openKeys") as string)
       : [],
-    openTabs: [],
-    activeTabsKey: getSessionStorage("activeTabsKey") || menuRoutes[0].key,
+    openTabs: initialTabLabel
+      ? [{ label: initialTabLabel, key: activeTabsKey, closable: false }]
+      : [],
+    activeTabsKey,
     setFold: (isFold: boolean) => set({ isFold }),
     setOpenKeys: (key: string) => {
       const arr = findParentKeys(menuRoutes, key);
@@ -48,9 +54,15 @@ const useSettingStore = create((set: any): settingState => {
           return state; // 返回当前状态，不做修改
         }
         const label = findLabelByKey(menuRoutes, key) as string;
+        const newOpenTabs = [...state.openTabs, { label, key }];
         return {
           ...state,
-          openTabs: [...state.openTabs, { label, key }],
+          openTabs: newOpenTabs.map((tab: Tab) => {
+            return {
+              ...tab,
+              closable: newOpenTabs.length > 1,
+            };
+          }),
         };
       });
     },
@@ -74,15 +86,31 @@ const useSettingStore = create((set: any): settingState => {
           }
           setSessionStorage("activeTabsKey", activeKey);
           handleNavigate(activeKey, navigate);
+          const newOpenTabs = state.openTabs.filter(
+            (item: Tab) => item.key !== key
+          );
           return {
             ...state,
             activeTabsKey: activeKey,
-            openTabs: state.openTabs.filter((item: Tab) => item.key !== key),
+            openTabs: newOpenTabs.map((tab: Tab) => {
+              return {
+                ...tab,
+                closable: newOpenTabs.length > 1,
+              };
+            }),
           };
         }
+        const newOpenTabs = state.openTabs.filter(
+          (item: Tab) => item.key !== key
+        );
         return {
           ...state,
-          openTabs: state.openTabs.filter((item: Tab) => item.key !== key),
+          openTabs: newOpenTabs.map((tab: Tab) => {
+            return {
+              ...tab,
+              closable: newOpenTabs.length > 1,
+            };
+          }),
         };
       });
     },
