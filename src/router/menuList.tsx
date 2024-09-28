@@ -10,8 +10,24 @@ import {
   BookOutlined,
   LaptopOutlined,
   RestOutlined,
+  LineChartOutlined,
 } from "@ant-design/icons";
 export const menuRoutes = [
+  {
+    label: "仪表",
+    key: "/",
+    icon: <LineChartOutlined />,
+    children: [
+      {
+        label: "工作台",
+        key: "/acl/user",
+      },
+      {
+        label: "分析",
+        key: "/acl/role",
+      },
+    ],
+  },
   {
     label: "首页",
     key: "/",

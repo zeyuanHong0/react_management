@@ -33,7 +33,7 @@ const useSettingStore = create((set: any): settingState => {
       : [],
     openTabs: initialTabLabel
       ? [{ label: initialTabLabel, key: activeTabsKey, closable: false }]
-      : [],
+      : [{ label: "首页", key: "/", closable: false }],
     activeTabsKey,
     setFold: (isFold: boolean) => set({ isFold }),
     setOpenKeys: (key: string) => {
