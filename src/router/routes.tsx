@@ -3,6 +3,8 @@ import Login from "@/pages/login";
 import Layout from "@/pages/layout";
 import Authorization from "@/components/Authorization";
 
+const Workbench = lazy(() => import("@/pages/dashboard/workbench"));
+const Analysis = lazy(() => import("@/pages/dashboard/analysis"));
 const Home = lazy(() => import("@/pages/home"));
 const Screen = lazy(() => import("@/pages/screen"));
 const User = lazy(() => import("@/pages/acl/user"));
@@ -26,6 +28,22 @@ const routes = [
       </Authorization>
     ),
     children: [
+      {
+        path: "/dashboard/workbench",
+        element: (
+          <Suspense>
+            <Workbench />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/dashboard/analysis",
+        element: (
+          <Suspense>
+            <Analysis />
+          </Suspense>
+        ),
+      },
       // 首页
       {
         path: "/home",

@@ -15,16 +15,16 @@ import {
 export const menuRoutes = [
   {
     label: "仪表",
-    key: "/",
+    key: "/dashboard",
     icon: <LineChartOutlined />,
     children: [
       {
         label: "工作台",
-        key: "/acl/user",
+        key: "/dashboard/workbench",
       },
       {
         label: "分析",
-        key: "/acl/role",
+        key: "/dashboard/analysis",
       },
     ],
   },
