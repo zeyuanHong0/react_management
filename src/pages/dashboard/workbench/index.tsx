@@ -1,5 +1,24 @@
+import { Col, Row, Space } from "antd";
+
+import BannerCard from "./banner-card";
+
 const Workbench = () => {
-  return <div>工作台</div>;
+  return (
+    <div className="w-full h-full p-[12px] box-border overflow-y-auto">
+      <Row gutter={[16, 16]} justify="center">
+        <Col span={24} lg={16}>
+          <BannerCard />
+        </Col>
+        <Col span={24} lg={8}>
+          <Space
+            direction="vertical"
+            size="large"
+            className="h-full w-full justify-center"
+          ></Space>
+        </Col>
+      </Row>
+    </div>
+  );
 };
 
 export default Workbench;
