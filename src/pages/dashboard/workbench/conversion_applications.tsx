@@ -1,6 +1,6 @@
 import { Progress } from "antd";
 
-import { Iconify } from "@/components/icon";
+import { Iconify } from "@/components/Icon";
 import { useThemeToken } from "@/theme/hooks";
 
 export function Conversion() {
