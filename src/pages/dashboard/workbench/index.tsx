@@ -1,6 +1,7 @@
 import { Col, Row, Space } from "antd";
 
 import BannerCard from "./banner-card";
+import { Applications, Conversion } from "./conversion_applications";
 
 const Workbench = () => {
   return (
@@ -14,7 +15,10 @@ const Workbench = () => {
             direction="vertical"
             size="large"
             className="h-full w-full justify-center"
-          ></Space>
+          >
+            <Conversion />
+            <Applications />
+          </Space>
         </Col>
       </Row>
     </div>
