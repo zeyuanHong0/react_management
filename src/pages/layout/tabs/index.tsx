@@ -1,5 +1,4 @@
-import { Tabs, TabsProps } from "antd";
-import { useRef, useState } from "react";
+import { Tabs } from "antd";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 // import Color from "color";

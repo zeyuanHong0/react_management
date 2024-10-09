@@ -23,7 +23,8 @@ type settingState = {
 };
 
 const useSettingStore = create((set: any): settingState => {
-  const activeTabsKey = getSessionStorage("activeTabsKey") || menuRoutes[0].key;
+  const activeTabsKey =
+    getSessionStorage("activeTabsKey") || "/dashboard/workbench";
   const initialTabLabel = findLabelByKey(menuRoutes, activeTabsKey) as string;
 
   return {
