@@ -1,4 +1,4 @@
-import { Col, Row, Space } from "antd";
+import { Col, Row, Space, Card } from "antd";
 
 import BannerCard from "./banner-card";
 import { Applications, Conversion } from "./conversion_applications";
@@ -50,6 +50,15 @@ const Workbench = () => {
             percent="0.1%"
             chartData={[35, 41, 62, 42, 13, 18, 29, 37, 36]}
           />
+        </Col>
+      </Row>
+
+      <Row gutter={[16, 16]} justify="center" className="mt-4">
+        <Col span={24} lg={8}>
+          <Card></Card>
+        </Col>
+        <Col span={24} lg={16}>
+          <Card></Card>
         </Col>
       </Row>
     </div>
