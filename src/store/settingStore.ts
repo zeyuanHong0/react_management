@@ -83,7 +83,7 @@ const useSettingStore = create((set: any): settingState => {
           const index = state.openTabs.findIndex(
             (item: Tab) => item.key === state.activeTabsKey
           );
-          let activeKey =
+          const activeKey =
             index === 0
               ? newOpenTabs[0].key
               : newOpenTabs[index - 1]?.key || newOpenTabs[0].key;

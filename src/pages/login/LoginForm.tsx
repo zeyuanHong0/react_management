@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Form, Input, Button, message, Alert } from "antd";
+import { Form, Input, Button, message, Alert, Row, Col } from "antd";
 import type { FormProps } from "antd";
 
 import ProTag from "./components/Tag";
@@ -78,7 +78,7 @@ const LoginForm = () => {
                 <div>
                   <ProTag className="flex-shrink-0">密码</ProTag>
                   <strong
-                    className=" ml-1"
+                    className="ml-1"
                     style={{ color: colorInfoTextHover }}
                   >
                     111111
@@ -124,6 +124,23 @@ const LoginForm = () => {
           </Button>
         </Form.Item>
       </Form>
+      <Row align="middle" gutter={8}>
+        <Col span={9} flex="1">
+          <Button className="w-full !text-sm" size="large">
+            手机登录
+          </Button>
+        </Col>
+        <Col span={9} flex="1">
+          <Button className="w-full !text-sm" size="large">
+            二维码登录
+          </Button>
+        </Col>
+        <Col span={6} flex="1">
+          <Button className="w-full !text-sm" size="large">
+            注册
+          </Button>
+        </Col>
+      </Row>
     </>
   );
 };

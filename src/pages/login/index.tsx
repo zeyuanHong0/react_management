@@ -8,6 +8,7 @@ import { setSessionStorage } from "@/utils/storage";
 import { useThemeToken } from "@/theme/hooks";
 
 import LoginForm from "./LoginForm";
+import MobileForm from "./MobileForm";
 
 const Login = () => {
   // 获取主题
@@ -38,7 +39,8 @@ const Login = () => {
         </div>
 
         <div className="m-auto flex !h-screen w-full max-w-[480px] flex-col justify-center px-[16px] lg:px-[64px]">
-          <LoginForm />
+          {/* <LoginForm /> */}
+          <MobileForm />
         </div>
       </Layout>
     </>
