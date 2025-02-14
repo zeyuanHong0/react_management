@@ -1,14 +1,7 @@
-import {
-  Form,
-  Input,
-  Button,
-  message,
-  Row,
-  Col,
-  Statistic,
-  Divider,
-} from "antd";
+import { Form, Input, Button, Row, Col, Statistic } from "antd";
 import { useState } from "react";
+
+import BackBtn from "./components/BackBtn";
 
 const MobileForm = () => {
   const { Countdown } = Statistic;
@@ -23,6 +16,7 @@ const MobileForm = () => {
     setCountdown(0);
     setSecond(60);
   };
+  const goBack = () => {};
   return (
     <>
       <div className="mb-4 text-2xl font-bold xl:text-3xl">手机登录</div>
@@ -73,6 +67,7 @@ const MobileForm = () => {
           </Button>
         </Form.Item>
       </Form>
+      <BackBtn />
     </>
   );
 };

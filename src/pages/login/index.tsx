@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Layout } from "antd";
 import Color from "color";
 
@@ -19,6 +19,8 @@ const Login = () => {
 
   const gradientBg = Color(colorBgElevated).alpha(0.9).toString();
   const bg = `linear-gradient(${gradientBg}, ${gradientBg}) center center / cover no-repeat,url(${Overlay2})`;
+
+  const [formType, setFormType] = useState("login");
   return (
     <>
       <Layout className="relative flex !min-h-screen !w-full !flex-row">
