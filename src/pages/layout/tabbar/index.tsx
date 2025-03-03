@@ -76,7 +76,16 @@ const Tabbar = () => {
           <Button type="dashed" icon={<Icon />} onClick={handleFullScreen} />
           {/* 头像 */}
           <div className="flex items-center gap-1">
-            <Avatar src={<img src={userInfo.avatar} alt="avatar" />} />
+            <Avatar
+              src={
+                <img
+                  src={
+                    "https://media.giphy.com/media/DyQrKMpqkAhNHZ1iWe/giphy.gif?cid=82a1493b9thyjlcpxscciyl4qco3k4x6pr9l4m4d8xuucpmb&ep=v1_gifs_trending&rid=giphy.gif&ct=g"
+                  }
+                  alt="avatar"
+                />
+              }
+            />
             <span>{userInfo.name}</span>
             <Dropdown menu={{ items }} placement="bottom">
               <DownOutlined />
