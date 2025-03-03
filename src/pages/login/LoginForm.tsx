@@ -6,7 +6,7 @@ import ProTag from "./components/Tag";
 import useStore from "@/store";
 import { useThemeToken } from "@/theme/hooks";
 
-const LoginForm = () => {
+const LoginForm = ({ changeLoginWay }) => {
   const navigator = useNavigate();
   type FieldType = {
     username: string;
@@ -126,17 +126,29 @@ const LoginForm = () => {
       </Form>
       <Row align="middle" gutter={8}>
         <Col span={9} flex="1">
-          <Button className="w-full !text-sm" size="large">
+          <Button
+            className="w-full !text-sm"
+            size="large"
+            onClick={() => changeLoginWay("mobile")}
+          >
             手机登录
           </Button>
         </Col>
         <Col span={9} flex="1">
-          <Button className="w-full !text-sm" size="large">
+          <Button
+            className="w-full !text-sm"
+            size="large"
+            onClick={() => changeLoginWay("QRCode")}
+          >
             二维码登录
           </Button>
         </Col>
         <Col span={6} flex="1">
-          <Button className="w-full !text-sm" size="large">
+          <Button
+            className="w-full !text-sm"
+            size="large"
+            onClick={() => changeLoginWay("register")}
+          >
             注册
           </Button>
         </Col>

@@ -22,18 +22,14 @@ const Login = () => {
 
   const [formType, setFormType] = useState("login");
 
-  const goBack = () => {
-    setFormType("login");
-  };
-
   const showForm = () => {
     switch (formType) {
       case "login":
-        return <LoginForm />;
+        return <LoginForm changeLoginWay={(way: string) => setFormType(way)} />;
       case "mobile":
-        return <MobileForm goBack={goBack} />;
+        return <MobileForm goBack={() => setFormType("login")} />;
       default:
-        return <LoginForm />;
+        return <LoginForm changeLoginWay={(way: string) => setFormType(way)} />;
     }
   };
   return (
