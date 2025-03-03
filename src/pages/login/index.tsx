@@ -9,6 +9,7 @@ import { useThemeToken } from "@/theme/hooks";
 
 import LoginForm from "./LoginForm";
 import MobileForm from "./MobileForm";
+import QRCodeForm from "./QRCodeForm";
 
 const Login = () => {
   // 获取主题
@@ -28,6 +29,8 @@ const Login = () => {
         return <LoginForm changeLoginWay={(way: string) => setFormType(way)} />;
       case "mobile":
         return <MobileForm goBack={() => setFormType("login")} />;
+      case "QRCode":
+        return <QRCodeForm goBack={() => setFormType("login")} />;
       default:
         return <LoginForm changeLoginWay={(way: string) => setFormType(way)} />;
     }
