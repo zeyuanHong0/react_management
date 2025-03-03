@@ -23,7 +23,7 @@ const Layout = () => {
   console.log("🚀 ~ Layout ~ useSettingStore():", useSettingStore());
 
   useEffect(() => {
-    const hasShownWelcome = getSessionStorage("hasShownWelcome");
+    const hasShownWelcome = getSessionStorage("hasShownWelcome") || "false";
     if (location.state?.from === "/login" && hasShownWelcome !== "true") {
       handleWelcome();
       setSessionStorage("hasShownWelcome", "true");
@@ -104,9 +104,7 @@ const Layout = () => {
           )}
         >
           {/* tabs */}
-          <div
-            className="w-full h-[40px]"
-          >
+          <div className="w-full h-[40px]">
             <MultiTabs />
           </div>
           <div className="layout_content w-full h-[calc(100vh-92px)]">

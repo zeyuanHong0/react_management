@@ -31,7 +31,7 @@ const LoginForm = () => {
       if (res === "is login") {
         handleGetUserInfo();
       }
-    } catch (error) {
+    } catch {
       message.error("账号或者密码错误");
     }
   };
@@ -44,7 +44,7 @@ const LoginForm = () => {
         // 前往首页 '/'
         navigator("/", { state: { from: "/login" } });
       }
-    } catch (error) {
+    } catch {
       message.error("获取用户信息失败");
     }
   };

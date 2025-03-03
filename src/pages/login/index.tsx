@@ -21,6 +21,21 @@ const Login = () => {
   const bg = `linear-gradient(${gradientBg}, ${gradientBg}) center center / cover no-repeat,url(${Overlay2})`;
 
   const [formType, setFormType] = useState("login");
+
+  const goBack = () => {
+    setFormType("login");
+  };
+
+  const showForm = () => {
+    switch (formType) {
+      case "login":
+        return <LoginForm />;
+      case "mobile":
+        return <MobileForm goBack={goBack} />;
+      default:
+        return <LoginForm />;
+    }
+  };
   return (
     <>
       <Layout className="relative flex !min-h-screen !w-full !flex-row">
@@ -41,8 +56,7 @@ const Login = () => {
         </div>
 
         <div className="m-auto flex !h-screen w-full max-w-[480px] flex-col justify-center px-[16px] lg:px-[64px]">
-          {/* <LoginForm /> */}
-          <MobileForm />
+          {showForm()}
         </div>
       </Layout>
     </>

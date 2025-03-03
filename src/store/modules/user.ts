@@ -65,8 +65,8 @@ const userStore = (set: any): UserState => {
       try {
         const res: any = await fetchLogout();
         if (res.code === 200) {
-          REMOVE_TOKEN();
-          set({ token: "", username: "", avatar: "" });
+          localStorage.clear();
+          sessionStorage.clear();
           return "退出登录成功";
         } else {
           return Promise.reject(new Error(res.message));
