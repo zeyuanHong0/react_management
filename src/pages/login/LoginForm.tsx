@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Form, Input, Button, message, Alert, Row, Col } from "antd";
+import { Form, Input, Button, message, Alert, Row, Col, Checkbox } from "antd";
 import type { FormProps } from "antd";
 
 import ProTag from "./components/Tag";
@@ -117,7 +117,21 @@ const LoginForm = ({ changeLoginWay }) => {
             placeholder="请输入密码"
           />
         </Form.Item>
-
+        <Form.Item>
+          <div className="flex justify-between">
+            <div>
+              <Checkbox>记住我</Checkbox>
+            </div>
+            <div>
+              <a
+                className="text-sm !underline"
+                onClick={() => alert(123)}
+              >
+                忘记密码?
+              </a>
+            </div>
+          </div>
+        </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" size="large" block>
             登录
