@@ -11,6 +11,17 @@ import LoginForm from "./LoginForm";
 import MobileForm from "./MobileForm";
 import QRCodeForm from "./QRCodeForm";
 
+type LoginProps = {
+  changeLoginWay: (way: string) => void;
+  goBack: () => void;
+};
+// 表单组件映射
+const FORM_COMPONENTS = {
+  login: (props: LoginProps) => <LoginForm {...props} />,
+  mobile: (props: LoginProps) => <MobileForm {...props} />,
+  QRCode: (props: LoginProps) => <QRCodeForm {...props} />,
+};
+
 const Login = () => {
   // 获取主题
   const { colorBgElevated } = useThemeToken();
@@ -23,23 +34,22 @@ const Login = () => {
 
   const [formType, setFormType] = useState("login");
 
-  const showForm = () => {
-    switch (formType) {
-      case "login":
-        return <LoginForm changeLoginWay={(way: string) => setFormType(way)} />;
-      case "mobile":
-        return <MobileForm goBack={() => setFormType("login")} />;
-      case "QRCode":
-        return <QRCodeForm goBack={() => setFormType("login")} />;
-      default:
-        return <LoginForm changeLoginWay={(way: string) => setFormType(way)} />;
-    }
+  // 渲染表单组件
+  const renderForm = () => {
+    const formProps = {
+      changeLoginWay: (way: string) => setFormType(way),
+      goBack: () => setFormType("login"),
+    };
+
+    const FormComponent = FORM_COMPONENTS[formType] || FORM_COMPONENTS.login;
+    return FormComponent(formProps);
   };
+
   return (
     <>
       <Layout className="relative flex !min-h-screen !w-full !flex-row">
         <div
-          className="hidden grow flex-col items-center justify-center gap-[80px] bg-center  bg-no-repeat md:flex"
+          className="hidden grow flex-col items-center justify-center gap-[80px] bg-center bg-no-repeat md:flex"
           style={{
             background: bg,
           }}
@@ -55,7 +65,7 @@ const Login = () => {
         </div>
 
         <div className="m-auto flex !h-screen w-full max-w-[480px] flex-col justify-center px-[16px] lg:px-[64px]">
-          {showForm()}
+          {renderForm()}
         </div>
       </Layout>
     </>
