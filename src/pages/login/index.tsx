@@ -10,6 +10,7 @@ import { useThemeToken } from "@/theme/hooks";
 import LoginForm from "./LoginForm";
 import MobileForm from "./MobileForm";
 import QRCodeForm from "./QRCodeForm";
+import RegisterForm from "./RegisterForm";
 
 type LoginProps = {
   changeLoginWay: (way: string) => void;
@@ -20,6 +21,7 @@ const FORM_COMPONENTS = {
   login: (props: LoginProps) => <LoginForm {...props} />,
   mobile: (props: LoginProps) => <MobileForm {...props} />,
   QRCode: (props: LoginProps) => <QRCodeForm {...props} />,
+  register: (props: LoginProps) => <RegisterForm {...props} />,
 };
 
 const Login = () => {
