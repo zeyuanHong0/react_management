@@ -3,6 +3,7 @@ import { Col, Row, Space, Card } from "antd";
 import BannerCard from "./banner-card";
 import { Applications, Conversion } from "./conversion_applications";
 import TotalCard from "./total-card";
+import CurrentDownload from "./current-download";
 
 const Workbench = () => {
   return (
@@ -55,7 +56,7 @@ const Workbench = () => {
 
       <Row gutter={[16, 16]} justify="center" className="mt-4">
         <Col span={24} lg={8}>
-          <Card></Card>
+          <CurrentDownload />
         </Col>
         <Col span={24} lg={16}>
           <Card></Card>

@@ -2,7 +2,7 @@ import { Col, Row } from "antd";
 import Color from "color";
 
 import Character3 from "@/assets/images/character_3.png";
-import { Iconify } from "@/components/icon";
+import { Iconify } from "@/components/Icon";
 import { useThemeToken } from "@/theme/hooks";
 
 const BannerCard = () => {
