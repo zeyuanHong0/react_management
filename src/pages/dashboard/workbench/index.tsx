@@ -6,7 +6,7 @@ import TotalCard from "./total-card";
 
 const Workbench = () => {
   return (
-    <div className="w-full h-full py-[16px] px-[16px] lg:px-[80px] box-border overflow-y-auto">
+    <div className="box-border h-full w-full overflow-y-auto px-[16px] py-[16px]">
       <Row gutter={[16, 16]} justify="center">
         <Col span={24} lg={16}>
           <BannerCard />
