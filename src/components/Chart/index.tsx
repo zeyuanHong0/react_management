@@ -8,7 +8,7 @@ const Chart = (props: ApexChartProps) => {
   const theme = useThemeToken();
   return (
     <StyledApexChart $thememode={ThemeMode.Light} $theme={theme}>
-      <ApexChart {...props} />;
+      <ApexChart {...props} />
     </StyledApexChart>
   );
 };
