@@ -107,7 +107,10 @@ export default function useChart(options: ApexOptions) {
 
     // Tooltip
     tooltip: {
-      theme: false,
+      // theme: false,
+      style: {
+        backgroundColor: "#fff",
+      },
       x: {
         show: true,
       },
