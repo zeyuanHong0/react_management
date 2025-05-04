@@ -1,9 +1,4 @@
-import { fetchLogin, fetchUserInfo, fetchLogout } from "@/api/user/index";
-import type {
-  LoginFormData,
-  LoginResponseData,
-  UserInfoResponsedata,
-} from "@/api/user/type";
+import type { LoginFormData } from "@/api/user/type";
 import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from "@/utils/token";
 
 export type UserInfo = {
@@ -18,6 +13,8 @@ export type UserState = {
   getUserInfo: () => Promise<string>;
   userLogout: () => Promise<string>;
 };
+const avatar =
+  "https://media.giphy.com/media/tpVKvAabWt3G5csMkT/giphy.gif?cid=ecf05e47gh5dlpncg2xoqjhdn09mcce1zl5jm5l4g28y043o&ep=v1_gifs_search&rid=giphy.gif&ct=g";
 const userStore = (set: any): UserState => {
   return {
     token: GET_TOKEN(),
@@ -28,52 +25,36 @@ const userStore = (set: any): UserState => {
           avatar: "",
         },
     // 登录
-    async userLogin(data: LoginFormData) {
-      try {
-        const res: LoginResponseData = await fetchLogin(data);
-        console.log("🚀 ~ userLogin ~ res:", res);
-        if (res.code === 200) {
-          set({ token: res.data as string });
-          SET_TOKEN(res.data as string);
-          return "is login";
-        } else {
-          return Promise.reject(res.message);
-        }
-      } catch (error: any) {
-        return Promise.reject(error);
-      }
+    async userLogin() {
+      set({ token: "test_token" });
+      SET_TOKEN("test_token");
+      return "is login";
     },
 
     // 获取用户信息
     async getUserInfo() {
-      try {
-        const res: UserInfoResponsedata = await fetchUserInfo();
-        if (res.code === 200) {
-          set({ userInfo: res.data });
-          localStorage.setItem("userInfo", JSON.stringify(res.data));
-          return "获取用户信息成功";
-        } else {
-          return Promise.reject(new Error(res.message));
-        }
-      } catch (error: any) {
-        return Promise.reject(error);
-      }
+      set({
+        userInfo: {
+          name: "test",
+          avatar,
+        },
+      });
+      localStorage.setItem(
+        "userInfo",
+        JSON.stringify({
+          name: "test",
+          avatar,
+        }),
+      );
+      return "获取用户信息成功";
     },
 
     // 退出登录
     async userLogout() {
-      try {
-        const res: any = await fetchLogout();
-        if (res.code === 200) {
-          localStorage.clear();
-          sessionStorage.clear();
-          return "退出登录成功";
-        } else {
-          return Promise.reject(new Error(res.message));
-        }
-      } catch (error) {
-        return Promise.reject(error);
-      }
+      set({ token: null });
+      REMOVE_TOKEN();
+      localStorage.clear();
+      return "退出登录成功";
     },
   };
 };
