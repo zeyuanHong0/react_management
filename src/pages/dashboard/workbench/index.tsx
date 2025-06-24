@@ -4,6 +4,7 @@ import BannerCard from "./banner-card";
 import { Applications, Conversion } from "./conversion_applications";
 import TotalCard from "./total-card";
 import CurrentDownload from "./current-download";
+import AreaDownload from "./area-download";
 
 const Workbench = () => {
   return (
@@ -55,11 +56,11 @@ const Workbench = () => {
       </Row>
 
       <Row gutter={[16, 16]} justify="center" className="mt-4">
-        <Col span={24} lg={8}>
+        <Col span={24} md={12} lg={8}>
           <CurrentDownload />
         </Col>
-        <Col span={24} lg={16}>
-          <Card></Card>
+        <Col span={24} md={12} lg={16}>
+          <AreaDownload />
         </Col>
       </Row>
     </div>
