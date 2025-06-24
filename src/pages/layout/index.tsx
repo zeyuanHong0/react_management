@@ -16,7 +16,7 @@ import Tabbar from "./tabbar";
 import MultiTabs from "./tabs";
 
 const Layout = () => {
-  const location = useLocation();
+  const location= useLocation();
   const [api, contextHolder] = notification.useNotification();
   const { colorPrimary, colorBorder } = useThemeToken();
   const { isFold } = useSettingStore();
