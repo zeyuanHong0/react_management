@@ -8,7 +8,7 @@ import AreaDownload from "./area-download";
 
 const Workbench = () => {
   return (
-    <div className="box-border h-full w-full overflow-y-auto bg-[#FBFBFB] px-[16px] py-[16px] 2xl:px-[80px]">
+    <div className="box-border h-full w-full overflow-y-auto bg-[#FFF] px-[16px] py-[16px] 2xl:px-[160px]">
       <Row gutter={[16, 16]} justify="center">
         <Col span={24} lg={16}>
           <BannerCard />

@@ -1,5 +1,4 @@
-import { Card } from "antd";
-
+import Card from "@/components/Card";
 import { SvgIcon } from "@/components/Icon";
 import Chart from "@/components/Chart";
 import useChart from "@/components/Chart/useChart";

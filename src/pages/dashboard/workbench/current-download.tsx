@@ -1,11 +1,12 @@
-import { Typography, Card } from "antd";
+import { Typography } from "antd";
 
+import Card from "@/components/Card";
 import Chart from "@/components/Chart";
 import useChart from "@/components/Chart/useChart";
 
 const CurrentDownload = () => {
   return (
-    <Card className="flex-col">
+    <Card className="h-[380px] flex-col">
       <header className="self-start">
         <Typography.Title level={5}>Current Download</Typography.Title>
       </header>
@@ -52,7 +53,7 @@ const ChartDonut = () => {
   });
 
   return (
-    <Chart type="donut" series={series} options={chartOptions} height={360} />
+    <Chart type="donut" series={series} options={chartOptions} height={300} />
   );
 };
 

@@ -1,6 +1,7 @@
-import { Select, Typography, Card } from "antd";
+import { Select, Typography } from "antd";
 import { useState } from "react";
 
+import Card from "@/components/Card";
 import Chart from "@/components/Chart";
 import useChart from "@/components/Chart/useChart";
 
@@ -18,7 +19,7 @@ export default function AreaDownload() {
     ],
   };
   return (
-    <Card className="flex-col">
+    <Card className="h-[380px] flex-col">
       <header className="flex w-full justify-between self-start">
         <Typography.Title level={5}>Area Installed</Typography.Title>
         <Select
