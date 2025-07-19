@@ -1,13 +1,12 @@
-import {
-  HomeOutlined,
-  FundProjectionScreenOutlined,
-  LineChartOutlined,
-} from "@ant-design/icons";
+import { Iconify, SvgIcon } from "@/components/Icon";
+
 export const menuRoutes = [
   {
     label: "仪表",
     key: "/dashboard",
-    icon: <LineChartOutlined />,
+    icon: (
+      <SvgIcon icon="ic-analysis" size={24} className="ant-menu-item-icon" />
+    ),
     children: [
       {
         label: "工作台",
@@ -22,11 +21,11 @@ export const menuRoutes = [
   {
     label: "首页",
     key: "/",
-    icon: <HomeOutlined />,
+    icon: <Iconify icon="solar:widget-5-bold-duotone" width={24} height={24} />,
   },
   {
     label: "数据大屏",
     key: "/screen",
-    icon: <FundProjectionScreenOutlined />,
+    icon: <Iconify icon="solar:pie-chart-3-bold" width={24} height={24} />,
   },
 ];
