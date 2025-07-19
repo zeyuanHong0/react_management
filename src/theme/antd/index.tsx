@@ -12,7 +12,7 @@ export default function AntdConfig({ children }: Props) {
       locale={zhCN}
       theme={{
         token: {
-          colorPrimary: "#00b96b",
+          colorPrimary: "#00a76f",
         },
         components: {
           Menu: {
