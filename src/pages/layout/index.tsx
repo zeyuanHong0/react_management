@@ -91,7 +91,7 @@ const Layout = () => {
             "layout_tabbar",
             "fixed",
             "top-[0]",
-            "h-[50px]",
+            "h-[70px]",
             {
               "left-[260px]": !isFold,
               "left-[81px]": isFold,
@@ -106,8 +106,8 @@ const Layout = () => {
         <div
           className={classNames(
             "absolute",
-            "top-[50px]",
-            "h-[calc(100vh-50px)]",
+            "top-[70px]",
+            "h-[calc(100vh-70px)]",
             {
               "left-[260px]": !isFold,
               "w-[calc(100%-260px)]": !isFold,
@@ -120,7 +120,7 @@ const Layout = () => {
           <div className="h-[40px] w-full">
             <MultiTabs />
           </div>
-          <div className="layout_content h-[calc(100vh-92px)] w-full">
+          <div className="layout_content h-[calc(100vh-112px)] w-full">
             <Outlet />
           </div>
         </div>
