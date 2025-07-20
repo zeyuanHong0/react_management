@@ -5,12 +5,14 @@ import {
   ReloadOutlined,
   DownOutlined,
 } from "@ant-design/icons";
-import { Avatar, Button, Dropdown, notification } from "antd";
+import { Avatar, Button, Dropdown, notification, Breadcrumb } from "antd";
 import type { MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
 
 import useSettingStore from "@/store/settingStore.ts";
 import useStore from "@/store";
+
+import BreadCrumb from "./_common/bread-crumb";
 
 const Tabbar = () => {
   const navigate = useNavigate();
@@ -60,7 +62,11 @@ const Tabbar = () => {
     <>
       {contextHolder}
       <div className="bg-[rgb(247, 245, 245)] box-border flex h-full w-full items-center justify-between pl-[10px] pr-[20px]">
-        <div></div>
+        <div className="ml-6">
+          <div className="hidden md:block">
+            <BreadCrumb />
+          </div>
+        </div>
         <div className="flex cursor-pointer gap-4">
           {/* 刷新 */}
           <Button
