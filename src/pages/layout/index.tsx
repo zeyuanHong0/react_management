@@ -5,6 +5,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import React, { useEffect } from "react";
 import Color from "color";
 import classNames from "classnames";
+import styled from "styled-components";
 
 import { useThemeToken } from "@/theme/hooks";
 import { setSessionStorage, getSessionStorage } from "@/utils/storage";
@@ -117,9 +118,9 @@ const Layout = () => {
           )}
         >
           {/* tabs */}
-          <div className="h-[40px] w-full">
+          <Tabcontainer>
             <MultiTabs />
-          </div>
+          </Tabcontainer>
           <div className="layout_content h-[calc(100vh-112px)] w-full">
             <Outlet />
           </div>
@@ -128,5 +129,13 @@ const Layout = () => {
     </>
   );
 };
+
+const Tabcontainer = styled.div`
+  height: 32px;
+  width: 100%;
+  padding: 0 12px;
+  box-sizing: border-box;
+  border-bottom: 1px dashed rgba(217, 217, 217, 0.6);
+`;
 
 export default Layout;

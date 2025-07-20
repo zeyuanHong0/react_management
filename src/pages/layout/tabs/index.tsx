@@ -19,7 +19,7 @@ const MultiTabs = () => {
 
   const onEdit = (
     targetKey: React.MouseEvent | React.KeyboardEvent | string,
-    action: "add" | "remove"
+    action: "add" | "remove",
   ) => {
     if (action === "remove") {
       removeTabs(targetKey as string, navigate);
@@ -51,6 +51,25 @@ const StyledMultiTabs = styled.div`
   }
   .ant-tabs {
     height: 100%;
+    .ant-tabs-tab {
+      min-width: 80px;
+      height: 32px;
+      background-color: #f5f5f5 !important;
+      &:hover {
+        .anticon-close {
+          visibility: visible !important;
+        }
+      }
+    }
+    .ant-tabs-tab-active {
+      background-color: #fff !important;
+      .anticon-close {
+        visibility: visible !important;
+      }
+    }
+    .ant-tabs-tab-btn {
+      font-size: 13px !important;
+    }
     .ant-tabs-content {
       height: 100%;
     }
@@ -60,6 +79,21 @@ const StyledMultiTabs = styled.div`
         height: 100%;
       }
     }
+    .ant-tabs-tab-remove {
+      color: #80d3b7;
+      font-size: 11px;
+      .anticon-close {
+        visibility: hidden;
+      }
+    }
+  }
+  .ant-tabs-nav::before {
+    border-bottom: none !important;
+  }
+  /* 修改 tab hover 效果 */
+  .ant-tabs-tab:hover {
+    background-color: #fff !important;
+    cursor: pointer;
   }
 
   /* 隐藏滚动条 */
