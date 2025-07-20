@@ -1,4 +1,3 @@
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import {
   FullscreenOutlined,
@@ -60,11 +59,9 @@ const Tabbar = () => {
   return (
     <>
       {contextHolder}
-      <div className="w-full h-full flex justify-between items-center bg-[rgb(247, 245, 245)] pl-[10px] pr-[20px] box-border">
-        <div className="cursor-pointer" onClick={() => setFold(!isFold)}>
-          {isFold ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-        </div>
-        <div className="gap-4 flex cursor-pointer">
+      <div className="bg-[rgb(247, 245, 245)] box-border flex h-full w-full items-center justify-between pl-[10px] pr-[20px]">
+        <div></div>
+        <div className="flex cursor-pointer gap-4">
           {/* 刷新 */}
           <Button
             type="dashed"

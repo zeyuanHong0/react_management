@@ -1,14 +1,15 @@
 import "./index.scss";
 import { notification } from "antd";
-import { getTime } from "@/utils/getTime";
-import { setSessionStorage, getSessionStorage } from "@/utils/storage";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Outlet, useLocation } from "react-router-dom";
 import React, { useEffect } from "react";
 import Color from "color";
 import classNames from "classnames";
 
 import { useThemeToken } from "@/theme/hooks";
+import { setSessionStorage, getSessionStorage } from "@/utils/storage";
 import useSettingStore from "@/store/settingStore.ts";
+import { getTime } from "@/utils/getTime";
 
 import Logo from "@/components/Logo";
 import Nav from "./nav";
@@ -16,10 +17,10 @@ import Tabbar from "./tabbar";
 import MultiTabs from "./tabs";
 
 const Layout = () => {
-  const location= useLocation();
+  const location = useLocation();
   const [api, contextHolder] = notification.useNotification();
   const { colorPrimary, colorBorder } = useThemeToken();
-  const { isFold } = useSettingStore();
+  const { isFold, setFold } = useSettingStore();
   console.log("🚀 ~ Layout ~ useSettingStore():", useSettingStore());
 
   useEffect(() => {
@@ -39,7 +40,7 @@ const Layout = () => {
   return (
     <>
       {contextHolder}
-      <div className="layout_container w-full h-screen">
+      <div className="layout_container h-screen w-full">
         {/* 左侧菜单栏 */}
         <div
           className={classNames(
@@ -50,7 +51,7 @@ const Layout = () => {
             {
               "w-base-menu-width": !isFold,
               "w-base-menu-min-width": isFold,
-            }
+            },
           )}
           style={{
             borderRight: `1px dashed ${Color(colorBorder)
@@ -58,7 +59,7 @@ const Layout = () => {
               .toString()}`,
           }}
         >
-          <div className="flex items-center h-[60px] justify-center pt-[10px] box-border">
+          <div className="relative box-border flex h-[60px] items-center justify-center pt-[10px]">
             <Logo />
             {!isFold && (
               <span
@@ -68,6 +69,18 @@ const Layout = () => {
                 Alexander Smith
               </span>
             )}
+            <div
+              className="absolute right-0 top-1/2 z-50 mt-[-5px] translate-x-1/2 transform cursor-pointer"
+              onClick={() => setFold(!isFold)}
+            >
+              {isFold ? (
+                <MenuUnfoldOutlined
+                  style={{ color: "#637381", fontSize: 16 }}
+                />
+              ) : (
+                <MenuFoldOutlined style={{ color: "#637381", fontSize: 16 }} />
+              )}
+            </div>
           </div>
           {/* 菜单内容 */}
           <Nav />
@@ -84,7 +97,7 @@ const Layout = () => {
               "left-[81px]": isFold,
               "w-[calc(100%-260px)]": !isFold,
               "w-[calc(100%-81px)]": isFold,
-            }
+            },
           )}
         >
           <Tabbar />
@@ -100,14 +113,14 @@ const Layout = () => {
               "w-[calc(100%-260px)]": !isFold,
               "w-[calc(100%-81px)]": isFold,
               "left-[81px]": isFold,
-            }
+            },
           )}
         >
           {/* tabs */}
-          <div className="w-full h-[40px]">
+          <div className="h-[40px] w-full">
             <MultiTabs />
           </div>
-          <div className="layout_content w-full h-[calc(100vh-92px)]">
+          <div className="layout_content h-[calc(100vh-92px)] w-full">
             <Outlet />
           </div>
         </div>
