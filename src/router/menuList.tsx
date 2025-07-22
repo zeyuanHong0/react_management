@@ -15,12 +15,22 @@ export const menuRoutes = [
       {
         label: "分析",
         key: "/dashboard/analysis",
+        children:[
+          {
+            label: "分析页",
+            key: "/dashboard/analysis/page",
+          },
+          {
+            label: "分析图表",
+            key: "/dashboard/analysis/chart",
+          },
+        ]
       },
     ],
   },
   {
     label: "首页",
-    key: "/",
+    key: "/home",
     icon: <Iconify icon="solar:widget-5-bold-duotone" width={24} height={24} />,
   },
   {

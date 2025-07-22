@@ -5,14 +5,14 @@ import {
   ReloadOutlined,
   DownOutlined,
 } from "@ant-design/icons";
-import { Avatar, Button, Dropdown, notification, Breadcrumb } from "antd";
+import { Avatar, Button, Dropdown, notification } from "antd";
 import type { MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
 
 import useSettingStore from "@/store/settingStore.ts";
 import useStore from "@/store";
 
-import BreadCrumb from "./_common/bread-crumb";
+import BreadCrumb from "./bread-crumb";
 
 const Tabbar = () => {
   const navigate = useNavigate();
