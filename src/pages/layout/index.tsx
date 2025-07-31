@@ -2,7 +2,7 @@ import "./index.scss";
 import { notification } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Outlet, useLocation } from "react-router-dom";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Color from "color";
 import classNames from "classnames";
 import styled from "styled-components";
@@ -38,54 +38,70 @@ const Layout = () => {
       placement: "topRight",
     });
   };
+  // 判断是否隐藏左侧菜单栏,小于768px时隐藏
+  const [isShowLayoutMenu, setIsShowLayoutMenu] = useState(true);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsShowLayoutMenu(window.innerWidth >= 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <>
       {contextHolder}
       <div className="layout_container h-screen w-full">
         {/* 左侧菜单栏 */}
-        <div
-          className={classNames(
-            "layout_menu",
-            "h-full",
-            "bg-white",
-            "text-white",
-            {
-              "w-base-menu-width": !isFold,
-              "w-base-menu-min-width": isFold,
-            },
-          )}
-          style={{
-            borderRight: `1px dashed ${Color(colorBorder)
-              .alpha(0.6)
-              .toString()}`,
-          }}
-        >
-          <div className="relative box-border flex h-[60px] items-center justify-center pt-[10px]">
-            <Logo />
-            {!isFold && (
-              <span
-                className="ml-2 text-xl font-bold"
-                style={{ color: colorPrimary }}
-              >
-                Alexander Smith
-              </span>
+        {isShowLayoutMenu && (
+          <div
+            className={classNames(
+              "layout_menu",
+              "h-full",
+              "bg-white",
+              "text-white",
+              {
+                "w-base-menu-width": !isFold,
+                "w-base-menu-min-width": isFold,
+              },
             )}
-            <div
-              className="absolute right-0 top-1/2 z-50 mt-[-5px] translate-x-1/2 transform cursor-pointer"
-              onClick={() => setFold(!isFold)}
-            >
-              {isFold ? (
-                <MenuUnfoldOutlined
-                  style={{ color: "#637381", fontSize: 16 }}
-                />
-              ) : (
-                <MenuFoldOutlined style={{ color: "#637381", fontSize: 16 }} />
+            style={{
+              borderRight: `1px dashed ${Color(colorBorder)
+                .alpha(0.6)
+                .toString()}`,
+            }}
+          >
+            <div className="relative box-border flex h-[60px] items-center justify-center pt-[10px]">
+              <Logo />
+              {!isFold && (
+                <span
+                  className="ml-2 text-xl font-bold"
+                  style={{ color: colorPrimary }}
+                >
+                  Alexander Smith
+                </span>
               )}
+              <div
+                className="absolute right-0 top-1/2 z-50 mt-[-5px] translate-x-1/2 transform cursor-pointer"
+                onClick={() => setFold(!isFold)}
+              >
+                {isFold ? (
+                  <MenuUnfoldOutlined
+                    style={{ color: "#637381", fontSize: 16 }}
+                  />
+                ) : (
+                  <MenuFoldOutlined
+                    style={{ color: "#637381", fontSize: 16 }}
+                  />
+                )}
+              </div>
             </div>
+            {/* 菜单内容 */}
+            <Nav />
           </div>
-          {/* 菜单内容 */}
-          <Nav />
-        </div>
+        )}
+
         {/* 顶部 haeder */}
         <div
           className={classNames(
@@ -98,6 +114,8 @@ const Layout = () => {
               "left-[81px]": isFold,
               "w-[calc(100%-260px)]": !isFold,
               "w-[calc(100%-81px)]": isFold,
+              "left-0": !isShowLayoutMenu,
+              "w-full": !isShowLayoutMenu,
             },
           )}
         >
@@ -114,6 +132,8 @@ const Layout = () => {
               "w-[calc(100%-260px)]": !isFold,
               "w-[calc(100%-81px)]": isFold,
               "left-[81px]": isFold,
+              "left-0": !isShowLayoutMenu,
+              "w-full": !isShowLayoutMenu,
             },
           )}
         >
