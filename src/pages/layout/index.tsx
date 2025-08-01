@@ -114,8 +114,8 @@ const Layout = () => {
               "left-[81px]": isFold,
               "w-[calc(100%-260px)]": !isFold,
               "w-[calc(100%-81px)]": isFold,
-              "left-0": !isShowLayoutMenu,
-              "w-full": !isShowLayoutMenu,
+              "!left-0": !isShowLayoutMenu,
+              "!w-full": !isShowLayoutMenu,
             },
           )}
         >
@@ -132,8 +132,8 @@ const Layout = () => {
               "w-[calc(100%-260px)]": !isFold,
               "w-[calc(100%-81px)]": isFold,
               "left-[81px]": isFold,
-              "left-0": !isShowLayoutMenu,
-              "w-full": !isShowLayoutMenu,
+              "!left-0": !isShowLayoutMenu,
+              "!w-full": !isShowLayoutMenu,
             },
           )}
         >

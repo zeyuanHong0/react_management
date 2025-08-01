@@ -13,6 +13,7 @@ import useSettingStore from "@/store/settingStore.ts";
 import useStore from "@/store";
 
 import BreadCrumb from "./bread-crumb";
+import { IconButton, SvgIcon } from "@/components/Icon";
 
 const Tabbar = () => {
   const navigate = useNavigate();
@@ -61,12 +62,13 @@ const Tabbar = () => {
   return (
     <>
       {contextHolder}
-      <div className="bg-[rgb(247, 245, 245)] box-border flex h-full w-full items-center justify-between pl-[30px] pr-[40px]">
-        <div className="ml-6">
-          <div className="hidden md:block">
-            <BreadCrumb />
-          </div>
+      <div className="bg-[rgb(247, 245, 245)] box-border flex h-full w-full items-center justify-between px-3 md:pl-[30px] md:pr-[40px]">
+        <div className="ml-6 hidden md:block">
+          <BreadCrumb />
         </div>
+        <IconButton className="h-10 w-10 md:hidden">
+          <SvgIcon icon="ic-menu" size="24" />
+        </IconButton>
         <div className="flex cursor-pointer gap-4">
           {/* 刷新 */}
           <Button
