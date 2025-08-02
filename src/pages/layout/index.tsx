@@ -44,6 +44,7 @@ const Layout = () => {
     const handleResize = () => {
       setIsShowLayoutMenu(window.innerWidth >= 768);
     };
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);

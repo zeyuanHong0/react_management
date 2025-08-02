@@ -28,7 +28,8 @@ const useSettingStore = create((set: any): settingState => {
   const initialTabLabel = findLabelByKey(menuRoutes, activeTabsKey) as string;
 
   return {
-    isFold: false, // menu 是否折叠
+    isFold:
+      (JSON.parse(getSessionStorage("isFold") ?? "false") as boolean) || false, // menu 是否折叠
     openKeys: getSessionStorage("openKeys")
       ? JSON.parse(getSessionStorage("openKeys") as string)
       : [],
@@ -36,7 +37,10 @@ const useSettingStore = create((set: any): settingState => {
       ? [{ label: initialTabLabel, key: activeTabsKey, closable: false }]
       : [{ label: "工作台", key: "/dashboard/workbench", closable: false }],
     activeTabsKey,
-    setFold: (isFold: boolean) => set({ isFold }),
+    setFold: (isFold: boolean) => {
+      set({ isFold });
+      setSessionStorage("isFold", JSON.stringify(isFold));
+    },
     setOpenKeys: (key: string) => {
       const arr = findParentKeys(menuRoutes, key);
       set({
@@ -71,7 +75,7 @@ const useSettingStore = create((set: any): settingState => {
       set((state: settingState) => {
         // 过滤出新的 openTabs
         const newOpenTabs = state.openTabs.filter(
-          (item: Tab) => item.key !== key
+          (item: Tab) => item.key !== key,
         );
         // 判断需要关闭的标签是否是当前激活的标签
         if (state.activeTabsKey === key) {
@@ -81,7 +85,7 @@ const useSettingStore = create((set: any): settingState => {
           }
           // 找到下一个激活的标签
           const index = state.openTabs.findIndex(
-            (item: Tab) => item.key === state.activeTabsKey
+            (item: Tab) => item.key === state.activeTabsKey,
           );
           const activeKey =
             index === 0
