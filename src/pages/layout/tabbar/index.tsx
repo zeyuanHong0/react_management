@@ -5,7 +5,7 @@ import {
   ReloadOutlined,
   DownOutlined,
 } from "@ant-design/icons";
-import { Avatar, Button, Dropdown, notification } from "antd";
+import { Avatar, Button, Dropdown, notification, Drawer } from "antd";
 import type { MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
 
@@ -14,6 +14,7 @@ import useStore from "@/store";
 
 import BreadCrumb from "./bread-crumb";
 import { IconButton, SvgIcon } from "@/components/Icon";
+import Menu from "../menu";
 
 const Tabbar = () => {
   const navigate = useNavigate();
@@ -59,6 +60,7 @@ const Tabbar = () => {
   };
   const Icon = fullScreen ? FullscreenExitOutlined : FullscreenOutlined;
 
+  const [openDrawer, setDrawerOpen] = useState(false);
   return (
     <>
       {contextHolder}
@@ -66,7 +68,10 @@ const Tabbar = () => {
         <div className="ml-6 hidden md:block">
           <BreadCrumb />
         </div>
-        <IconButton className="h-10 w-10 md:hidden">
+        <IconButton
+          className="h-10 w-10 md:hidden"
+          onClick={() => setDrawerOpen(true)}
+        >
           <SvgIcon icon="ic-menu" size="24" />
         </IconButton>
         <div className="flex cursor-pointer gap-4">
@@ -98,6 +103,25 @@ const Tabbar = () => {
           </div>
         </div>
       </div>
+      {/* 左侧抽屉 */}
+      <Drawer
+        placement="left"
+        onClose={() => setDrawerOpen(false)}
+        open={openDrawer}
+        closeIcon={false}
+        styles={{
+          header: {
+            display: "none",
+          },
+          body: {
+            padding: 0,
+            overflow: "hidden",
+          },
+        }}
+        width="auto"
+      >
+        <Menu showFoldBtn={false} />
+      </Drawer>
     </>
   );
 };

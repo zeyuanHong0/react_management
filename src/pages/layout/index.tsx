@@ -1,28 +1,23 @@
 import "./index.scss";
-import { notification } from "antd";
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { Outlet, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import Color from "color";
+import { notification } from "antd";
+import { Outlet, useLocation } from "react-router-dom";
 import classNames from "classnames";
 import styled from "styled-components";
 
-import { useThemeToken } from "@/theme/hooks";
 import { setSessionStorage, getSessionStorage } from "@/utils/storage";
 import useSettingStore from "@/store/settingStore.ts";
 import { getTime } from "@/utils/getTime";
 
-import Logo from "@/components/Logo";
-import Nav from "./nav";
+import Menu from "./menu";
 import Tabbar from "./tabbar";
 import MultiTabs from "./tabs";
 
 const Layout = () => {
   const location = useLocation();
   const [api, contextHolder] = notification.useNotification();
-  const { colorPrimary, colorBorder } = useThemeToken();
-  const { isFold, setFold } = useSettingStore();
-  console.log("🚀 ~ Layout ~ useSettingStore():", useSettingStore());
+  const { isFold } = useSettingStore();
+  // console.log("🚀 ~ Layout ~ useSettingStore():", useSettingStore());
 
   useEffect(() => {
     const hasShownWelcome = getSessionStorage("hasShownWelcome") || "false";
@@ -50,59 +45,13 @@ const Layout = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   return (
     <>
       {contextHolder}
       <div className="layout_container h-screen w-full">
         {/* 左侧菜单栏 */}
-        {isShowLayoutMenu && (
-          <div
-            className={classNames(
-              "layout_menu",
-              "h-full",
-              "bg-white",
-              "text-white",
-              {
-                "w-base-menu-width": !isFold,
-                "w-base-menu-min-width": isFold,
-              },
-            )}
-            style={{
-              borderRight: `1px dashed ${Color(colorBorder)
-                .alpha(0.6)
-                .toString()}`,
-            }}
-          >
-            <div className="relative box-border flex h-[60px] items-center justify-center pt-[10px]">
-              <Logo />
-              {!isFold && (
-                <span
-                  className="ml-2 text-xl font-bold"
-                  style={{ color: colorPrimary }}
-                >
-                  Alexander Smith
-                </span>
-              )}
-              <div
-                className="absolute right-0 top-1/2 z-50 mt-[-5px] translate-x-1/2 transform cursor-pointer"
-                onClick={() => setFold(!isFold)}
-              >
-                {isFold ? (
-                  <MenuUnfoldOutlined
-                    style={{ color: "#637381", fontSize: 16 }}
-                  />
-                ) : (
-                  <MenuFoldOutlined
-                    style={{ color: "#637381", fontSize: 16 }}
-                  />
-                )}
-              </div>
-            </div>
-            {/* 菜单内容 */}
-            <Nav />
-          </div>
-        )}
-
+        {isShowLayoutMenu && <Menu />}
         {/* 顶部 haeder */}
         <div
           className={classNames(
