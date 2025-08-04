@@ -2,7 +2,7 @@ import { Breadcrumb } from "antd";
 import { useMatches, Link } from "react-router-dom";
 
 import { menuRoutes } from "@/router/menuList";
-import { useBreadcrumbPath } from "../../hooks/use-breadcrumb-path";
+import { useBreadcrumbPath } from "../hooks/use-breadcrumb-path";
 
 import { Iconify } from "@/components/Icon";
 
