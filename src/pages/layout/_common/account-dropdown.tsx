@@ -1,12 +1,17 @@
 import React from "react";
 import { Dropdown, Divider } from "antd";
 import type { MenuProps } from "antd";
+import { NavLink, useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 import { useThemeToken } from "@/theme/hooks";
+import useStore from "@/store";
 
 import { IconButton } from "@/components/Icon";
 
 const AccountDropdown = () => {
+  const { userLogout } = useStore();
+  const navigate = useNavigate();
   const avatar =
     "https://media.giphy.com/media/DyQrKMpqkAhNHZ1iWe/giphy.gif?cid=82a1493b9thyjlcpxscciyl4qco3k4x6pr9l4m4d8xuucpmb&ep=v1_gifs_trending&rid=giphy.gif&ct=g";
 
@@ -30,37 +35,26 @@ const AccountDropdown = () => {
     </div>
   );
 
+  const handleLogout = () => {
+    const res: string = userLogout();
+    if (res === "退出登录成功") {
+      // 回到登录页
+      navigate("/login");
+    }
+  };
+
   const items: MenuProps["items"] = [
     {
-      label: (
-        <a
-          href="https://www.antgroup.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          1st menu item
-        </a>
-      ),
+      label: <NavLink to="dashboard/workbench">仪表盘</NavLink>,
       key: "0",
-    },
-    {
-      label: (
-        <a
-          href="https://www.aliyun.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          2nd menu item
-        </a>
-      ),
-      key: "1",
     },
     {
       type: "divider",
     },
     {
-      label: "3rd menu item",
-      key: "3",
+      label: <LogoutBtn>退出登录</LogoutBtn>,
+      key: "2",
+      onClick: handleLogout,
     },
   ];
 
@@ -78,3 +72,9 @@ const AccountDropdown = () => {
 };
 
 export default AccountDropdown;
+
+const LogoutBtn = styled.div`
+  color: red;
+  cursor: pointer;
+  text-align: center;
+`;
