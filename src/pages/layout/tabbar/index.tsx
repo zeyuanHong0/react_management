@@ -5,6 +5,7 @@ import { IconButton, SvgIcon } from "@/components/Icon";
 import Menu from "../menu";
 import BreadCrumb from "../_common/bread-crumb";
 import AccountDropdown from "../_common/account-dropdown";
+import SettingButton from "../_common/setting-button";
 
 const Tabbar = () => {
   const [openDrawer, setDrawerOpen] = useState(false);
@@ -21,7 +22,11 @@ const Tabbar = () => {
         >
           <SvgIcon icon="ic-menu" size="24" />
         </IconButton>
-        <div className="flex cursor-pointer gap-4">
+        <div className="flex cursor-pointer items-center gap-2">
+          {/* 设置按钮 */}
+          <div>
+            <SettingButton />
+          </div>
           {/* 头像 */}
           <div>
             <AccountDropdown />
