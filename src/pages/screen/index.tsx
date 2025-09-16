@@ -6,7 +6,7 @@ const DataWall = () => {
   const [images, setImages] = useState<string[]>([]);
   useEffect(() => {
     const newImages: string[] = [];
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 100; i++) {
       // 使用 picsum 的随机参数生成不同图片
       newImages.push(`https://picsum.photos/seed/${i}/500/500`);
     }
